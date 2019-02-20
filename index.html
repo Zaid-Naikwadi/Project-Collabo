@@ -7,6 +7,9 @@
     <meta name="msvalidate.01" content="1BF418E510B5A17A2D71685C571BF4EB" />
 
     <title> Project Collabo  </title>
+    <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+   
+   
 
         
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -140,24 +143,20 @@
                         
                     </div><!-- end social-login-buttons -->
                     <div class="email-signup">
-                        <form id="track-signup" class="ajax-form" method="POST" ajax="/AJAX/hackerearth/signup/?source=homepage&next=/users/basic-details/">
-                            <input type='hidden' name='csrfmiddlewaretoken' value='h4sx5eGpGIe2apyaV6nKnzir314bKseBprTVj1S1cCEKMOwKFOn9Dw8TZy0XY34G' />
-                            
+                      
+                        <!--<form id="track-signup" class="ajax-form" method="POST" ajax="/AJAX/hackerearth/signup/?source=homepage&next=/users/basic-details/">
+                           <input type='hidden' name='csrfmiddlewaretoken' value='h4sx5eGpGIe2apyaV6nKnzir314bKseBprTVj1S1cCEKMOwKFOn9Dw8TZy0XY34G' />
+                        -->
     
-    
-    
-        
-            
     
             
             <div class="wrapper small-wrapper float-left">
                 <input id="id_first_name" maxlength="30" name="first_name" placeholder="First Name" type="text" required />
             </div>
     
-            <div class="wrapper small-wrapper float-right">
+             <div class="wrapper small-wrapper float-right">
                 <input id="id_last_name" maxlength="30" name="last_name" placeholder="Last Name" type="text" />
-            </div>
-    
+            </div> 
             <div class="clear"></div>
     
             <div class="wrapper small-wrapper">
@@ -241,7 +240,7 @@
     
     
     
-                        </form>
+                     <!-- </form>-->
                     </div>
                    <!-- <div class="inline-block">
                     <p class="dark term-conditions align-center or">or</p>
@@ -266,7 +265,9 @@
 
     </div> <!-- end page -->
 
-    </body>
+    <script src="index.js"></script>
 
-    </html>
+</body>
+
+</html>
     
