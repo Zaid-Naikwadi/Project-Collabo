@@ -9,6 +9,23 @@
     <title> Project Collabo  </title>
     <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
    
+    <!-- For Login - Added by Kamlesh on 21/02/2019-->
+    <script src='https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script>
+    <script src='https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'>
+    </script><meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/SaadRegal/pen/PKXLYN" />
+    <style class="cp-pen-styles"></style>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+      <meta charset="utf-8">
+
+
+
+
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <!-- Facebook tags -->
     <meta property="og:title" content="HackerEarth - Programming challenges and Developer jobs"/>
@@ -92,7 +109,48 @@
                             </ul>
                         </li>
                         
-                        <li class="nav-login"><a target="login-modal" class="blue-hover show-modal">Login</a></li>
+                        
+                        <!--Login code added by KAMLESH SILAG on 21/02/2019 -->
+                        <li>
+                            <a class="button" id="test">Login </a>
+                              <div class="ui modal test">
+                                <div class="ui middle aligned center aligned grid">
+                                 <div class="column">
+                                   <h2 class="ui blue image header">
+                                   <img src="img/logo.png" class="image">
+                                     <div class="content">
+                                         Log-in to your account
+                                     </div>
+                                   </h2>
+    
+                                   <form class="ui large form">
+                                     <div class="ui  segment">
+                                       <div class="field">
+                                         <div class="ui left icon input">
+                                           <i class="user icon"></i>
+                                           <input id="id_email1" type="text" name="email" placeholder="E-mail address">
+                                         </div>
+                                       </div>
+    
+                                     <div class="field">
+                                       <div class="ui left icon input">
+                                         <i class="lock icon"></i>
+                                         <input id="id_password1" type="password" name="password" placeholder="Password">
+                                       </div>
+                                     </div>
+    
+                                     <div id="Login" class="ui fluid large primary submit button">Login</div>
+                                   </div>
+                                 </form>
+    
+                                 <div id="test2" class="ui message">
+                                    New to us? <a>Sign Up</a>
+                                 </div>
+                               </div>
+                            </div>
+                          </div>
+                        </li>
+                        
                         <li class="nav-signup"><a target="login-modal" class="show-modal show-signup-in-modal button btn-blue">Sign up</a></li>
                         
                     </ul>
@@ -252,8 +310,8 @@
             </div><!-- end content-container -->
             <div class="clear"></div>
         </section><!-- end first-section -->
-        <section class="hackathons-section">
-            <div class="business-text">Register now to help and get helped to find innovative solutions for your projects!</div>
+        <section class="hackathons-section"><br>
+            <div class="business-text">Register now to help and get helped to find innovative solutions for <br><br><br>your projects!</div>
             <div class="clear"></div>
             <div class="hackathons-card-container pagelet-inview" id="live-or-upcoming-hackathons-container" ajax="/pagelets/fetch/latest-hackathons/" target="live-or-upcoming-hackathons-container" loader="true">
             </div>
@@ -267,6 +325,26 @@
     </div> <!-- end page -->
 
     <script src="index.js"></script>
+
+    <!-- Code By kamlesh silag on 23/02/2018 for login-->
+    <script src='https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script>
+  <script >
+
+  $(function () {
+    $("#test").click(function () {
+      $(".test").modal('show');
+    });
+
+    $("#test2").click(function(){
+      $(".test").modal('hide');
+    });
+    $(".test").modal({
+      closable: true });
+
+  
+  });
+  //# sourceURL=pen.js
+  </script>
 
 </body>
 
