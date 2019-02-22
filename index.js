@@ -1,5 +1,5 @@
 (function(){
-    
+
     // Initialize Firebase
 var config = {
     apiKey: "AIzaSyBBZrXTL-mFOHw9EzrQarO-Nrkl082C8Lk",
@@ -17,6 +17,13 @@ var config = {
   var txtEmail = document.getElementById('id_email');
   var txtPassword = document.getElementById('id_password');
   var btnSignup = document.getElementById('signup-start-now');
+
+  //Added by Kamlesh Silag on 22/02/2018 for Login
+  var btnLogin = document.getElementById('Login');
+  var txtEmail1 = document.getElementById('id_email1');
+  var txtPassword1 = document.getElementById('id_password1');
+
+
 
 
   /*btnSignup.addEventListener('click',e => {
@@ -38,6 +45,30 @@ var config = {
       promise
         .catch(e => console.log(e.message));
   });*/
+
+
+  //Login Added by Kamlesh on 22/02/2019
+  btnLogin.addEventListener('click',e=>{
+    var email = txtEmail1.value;
+    var password = txtPassword1.value;
+
+    if (email.length < 4) {
+      alert('Please enter an email address.');
+      return;
+    }
+    if (password.length < 4) {
+      alert('Please enter a password.');
+      return;
+    }
+
+    var auth = firebase.auth();
+    var promise = auth.signInWithEmailAndPassword(email,password);
+    promise.catch(e=>alert(e.message));
+
+
+
+  });
+
 
   btnSignup.addEventListener('click',e => {
     var email = txtEmail.value;

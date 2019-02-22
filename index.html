@@ -8,10 +8,25 @@
 
     <title> Project Collabo  </title>
     <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
-   
-   
 
-        
+
+    <!-- For Login - Added by Kamlesh on 21/02/2019-->
+    <script src='https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script>
+    <script src='https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'>
+    </script><meta charset='UTF-8'>
+    <meta name="robots" content="noindex">
+    <link rel="shortcut icon" type="image/x-icon" href="https://static.codepen.io/assets/favicon/favicon-8ea04875e70c4b0bb41da869e81236e54394d63638a1ef12fa558a4a835f1164.ico" /><link rel="mask-icon" type="" href="https://static.codepen.io/assets/favicon/logo-pin-f2d2b6d2c61838f7e76325261b7195c27224080bc099486ddd6dccb469b8e8e6.svg" color="#111" /><link rel="canonical" href="https://codepen.io/SaadRegal/pen/PKXLYN" />
+    <style class="cp-pen-styles"></style>
+
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.css" rel="stylesheet" type="text/css" />
+    <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
+    <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
+      <meta charset="utf-8">
+
+
+
+
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
     <!-- Facebook tags -->
     <meta property="og:title" content="HackerEarth - Programming challenges and Developer jobs"/>
@@ -21,54 +36,53 @@
     <meta property="og:site_name" content="HackerEarth"/>
     <meta property="og:type" content="website"/>
     <!-- end Facbook tags -->
-    
+
     <!-- Twitter tags -->
     <meta name="twitter:card" content="summary"/>
     <meta name="twitter:site" content="@HackerEarth"/>
     <meta name="twitter:url" content="https://www.hackerearth.com/"/>
     <meta name="twitter:title" content="HackerEarth - Programming challenges and Developer jobs"/>
     <!-- end Twitter tags -->
-    
-    
-            
+
+
+
             <link rel="shortcut icon" href="http://tedacollabo.org.za/img/favicon.ico" type="image/vnd.microsoft.icon">
-            
-    
+
+
             <link rel="stylesheet" href="https://static-fastly.hackerearth.com/static/base/base_common_combined.css?vrsn=45"/>
             <link rel="stylesheet" href="https://static-fastly.hackerearth.com/static/js/tooltip/tipTip.css?vrsn=0"/>
             <link rel="stylesheet" href="https://static-fastly.hackerearth.com/static/offline/offline-theme-slide.css?vrsn=0"/>
             <link rel="stylesheet" href="https://static-fastly.hackerearth.com/static/css/font-awesome-4.7.0/css/font-awesome.min.css?vrsn=0"/>
             <link rel="stylesheet" href="https://static-fastly.hackerearth.com/static/css/opensans/opensans.css?vrsn=0"/>
             <link rel="stylesheet" href="https://static-fastly.hackerearth.com/static/css/unicons.css?vrsn=1"/>
-    
-            
-    
-    
-    
-            
-    
+
+
+
+
+
+
+
             <!-- Make the static variable available for all js files -->
             <script>
                 var STATIC_URL = "https://static-fastly.hackerearth.com/static/";
             </script>
-    
+
             <!-- Store CSRF_COOKIE -->
             <script>
                 var CSRF_COOKIE_USED = "True";
                 var CSRF_COOKIE = "RtajdawoQ1vXLvsfADVgnG7jENErRc0aZQBHrXI0mVVFnUqPklVFDDXLAkAd5NQf";
             </script>
-    
-            
+
+
     <link rel="stylesheet" href="https://static-fastly.hackerearth.com/static/hackerearth/homepage.css?vrsn=18"/>
-    
-    
+
+
         </head>
 
-        
+
 <body>
-    
+
     <!-- This is the center page which has a fixed width of 1100px -->
-    
     <div class="responsive-page homepage">
         <section class="first-section">
             <header class="navbar-header header-top">
@@ -93,10 +107,50 @@
                                 </a>
                             </ul>
                         </li>
-                        
-                        <li class="nav-login"><a target="login-modal" class="blue-hover show-modal">Login</a></li>
+
+                        <!--Login code added by KAMLESH SILAG on 21/02/2019 -->
+                        <li>
+                        <a class="ui button primary" id="test">Login </a>
+                          <div class="ui modal test">
+                            <div class="ui middle aligned center aligned grid">
+                             <div class="column">
+                               <h2 class="ui blue image header">
+                               <img src="img/logo.png" class="image">
+                                 <div class="content">
+                                     Log-in to your account
+                                 </div>
+                               </h2>
+
+                               <form class="ui large form">
+                                 <div class="ui  segment">
+                                   <div class="field">
+                                     <div class="ui left icon input">
+                                       <i class="user icon"></i>
+                                       <input id="id_email1" type="text" name="email" placeholder="E-mail address">
+                                     </div>
+                                   </div>
+
+                                 <div class="field">
+                                   <div class="ui left icon input">
+                                     <i class="lock icon"></i>
+                                     <input id="id_password1" type="password" name="password" placeholder="Password">
+                                   </div>
+                                 </div>
+
+                                 <div id="Login" class="ui fluid large primary submit button">Login</div>
+                               </div>
+                             </form>
+
+                             <div id="test2" class="ui message">
+                                New to us? <a>Sign Up</a>
+                             </div>
+                           </div>
+                        </div>
+                      </div>
+                    </li>
+
                         <li class="nav-signup"><a target="login-modal" class="show-modal show-signup-in-modal button btn-blue">Sign up</a></li>
-                        
+
                     </ul>
                     <div class="clear"></div>
                 </nav>
@@ -117,10 +171,10 @@
                     <h2 class="dark">Help. Build. Collaborate.</h2>
                     <img src="https://www.kaggle.com/static/images/home/computer.png" class="mobile-image">
                     <div class="social-login-buttons">
-                        
-                        
+
+
                         <a id="social-login-button-fb" class="social-login-button social-login-button-fb show-popup hidden" minimal="true" url='/zeus/facebook/login/?display=popup&next=%2Fsocial-login-complete%2F%3Forigin_protocol%3Dhttps%26origin_host%3Dwww.hackerearth.com%26redirect%3D/users/basic-details/&update=facebook&source=homepage&purpose=signup'>
-                        
+
                             <i class="fa fa-facebook"></i>
                             <span>Start with Facebook</span>
                         </a>
@@ -128,9 +182,9 @@
                             <i class="fa fa-facebook"></i>
                             <span>Log in with Facebook</span>
                         </a>
-                        
+
                         <a id="social-login-button-g" class="social-login-button social-login-button-g show-popup hidden" minimal="true" url='/zeus/google/login/?next=%2Fsocial-login-complete%2F%3Forigin_protocol%3Dhttps%26origin_host%3Dwww.hackerearth.com%26redirect%3D/users/basic-details/&update=google&source=homepage&purpose=signup'>
-                        
+
                             <i class="fa fa-google-plus"></i>
                             <span>Start with Google</span>
                         </a>
@@ -140,40 +194,40 @@
                             </span>
                             <span>Sign in with Google</span>
                         </a>
-                        
+
                     </div><!-- end social-login-buttons -->
         <div class="email-signup " style="float: left;">
-                      
+
                         <!--<form id="track-signup" class="ajax-form" method="POST" ajax="/AJAX/hackerearth/signup/?source=homepage&next=/users/basic-details/">
                            <input type='hidden' name='csrfmiddlewaretoken' value='h4sx5eGpGIe2apyaV6nKnzir314bKseBprTVj1S1cCEKMOwKFOn9Dw8TZy0XY34G' />
                         -->
-    
-    
-            
-            <div class="float-left" style="width: 170px; margin-bottom: 5%;">
+
+
+
+            <div class="float-left" style="width: 170px; margin-bottom: 2px;">
                 <input id="id_first_name" maxlength="25" name="first_name" placeholder="First Name" type="text"  required />
             </div>
 
-            
-            
-             <div class="float-right" style="width:50%; margin-bottom: 2%;"> 
+             <div class="float-right" style="margin-bottom: 2px;">
                 <input id="id_last_name" maxlength="25" name="last_name" placeholder="Last Name" type="text" />
-            </div> 
-            <div class="clear"></div>
+            </div>
+            <div class="clear"></div><br>
 
-            <div style="margin-bottom:15%;">
+            <div style="margin-bottom:5px;">
                 <input id="id_email" maxlength="75" name="email" placeholder="Email" type="text" required />
             </div>
-
-            <div>
+            <div >
                 <input id="id_password" name="password" placeholder="Password" type="password" required />
             </div>
-        
-    
-        <div class="align-center medium-margin" style="margin-top:30%;">
+
+
+        <div class="align-center medium-margin">
             <button id="signup-start-now" class="button btn-blue fontawesome btn-largest weight-600 large show-modal" target="gdpr-modal">Start Now</button>
+
         </div>
-    
+
+
+
         <style>
       #gdpr-modal {
         position: absolute;
@@ -181,49 +235,49 @@
       }
     </style>
     <div id="gdpr-modal" class="modal-window smaller-modal hidden">
-      
-    
+
+
     <style>
       #gdpr-modal-content {
         font-family: 'Open Sans', sans-serif;
       }
-    
+
       #gdpr-modal-content .modal-header {
         padding: 50px 55px 35px 55px;
         font-size: 24px;
         font-weight: 400;
       }
-    
+
       #gdpr-modal-content .modal-footer {
         padding: 25px 55px 90px;
       }
-    
+
       #gdpr-modal-content .modal-content {
         padding: 0 55px 5px;
         font-size: 16px;
         line-height: 22px;
       }
-    
+
       #gdpr-modal-content .modal-footer .checkbox-row {
         font-size: 16px;
         display: inline-flex;
       }
-    
+
       #gdpr-modal-content a {
         color: #0099ff;
       }
-      
+
       #gdpr-modal-content .button.disabled {
         background: #f5f6f6 !important;
       }
     </style>
-    
+
     <div id="gdpr-modal-content">
-      
+
     <div class="modal-header">HackerEarth’s Privacy Policy and Terms of Service</div>
       <div class="modal-content">
           We care about your data privacy. HackerEarth uses the information that you provide to contact you about relevant content, products, and services. <br /> <br />
-    
+
           Our <a href="/privacy/" target="_blank">Privacy Policy</a> and <a href="/terms-of-service/" target="_blank">Terms of Service</a> will help you understand that you are in control of your data at HackerEarth.
       </div>
       <div class="modal-footer">
@@ -236,13 +290,13 @@
         </div>
       </div>
     </div>
-    
+
     </div>
-    
-    
-    
-    
-    
+
+
+
+
+
                      <!-- </form>-->
                     </div>
                    <!-- <div class="inline-block">
@@ -260,17 +314,46 @@
             <div class="hackathons-card-container pagelet-inview" id="live-or-upcoming-hackathons-container" ajax="/pagelets/fetch/latest-hackathons/" target="live-or-upcoming-hackathons-container" loader="true">
             </div>
         </section>
-    
 
-        
-    
-       
+
+
+
+
 
     </div> <!-- end page -->
 
     <script src="index.js"></script>
 
+
+
+  <script src='https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script>
+  <script >
+
+  $(function () {
+    $("#test").click(function () {
+      $(".test").modal('show');
+    });
+
+    $("#test2").click(function(){
+      $(".test").modal('hide');
+    });
+    $(".test").modal({
+      closable: true });
+
+    //Loading
+    var _gif = "http://assets.motherjones.com/interactives/projects/features/koch-network/shell19/img/loading.gif";
+    var _forest="http://www.discovertheforest.org/images/hero/home/6.jpg";
+          $("#UseractivityLog").click(function(){
+          $("#UserProfileLogs-cont img").attr("src",_gif);
+          setTimeout(function(){
+          $("#UserProfileLogs-cont img").attr("src",_forest);
+          },3000)
+        });
+
+  });
+  //# sourceURL=pen.js
+  </script>
+
 </body>
 
 </html>
-    
