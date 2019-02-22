@@ -116,7 +116,7 @@ var config = {
   firebase.auth().onAuthStateChanged(firebaseUser => {
       if(firebaseUser){
           console.log(firebaseUser);
-          window.location = 'home.html';
+          window.location = 'home/home.html';
       }
       else{
           console.log("not logged in");
