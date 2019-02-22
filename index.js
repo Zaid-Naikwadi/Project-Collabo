@@ -66,10 +66,13 @@ var config = {
 
   });
 
+//Sign up by Zaid
+
 
   btnSignup.addEventListener('click',e => {
     var email = txtEmail.value;
     var password = txtPassword.value;
+    var name = FirstName.value + " " + LastName.value;
     if (email.length < 4) {
       alert('Please enter an email address.');
       return;
@@ -95,9 +98,10 @@ var config = {
     });
     // [END createwithemail]
     console.log("creation done");
+
   });
 
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
+  /*firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   .then(function() {
     // Existing and future Auth states are now persisted in the current
     // session only. Closing the window would clear any existing state even
@@ -110,13 +114,25 @@ var config = {
     // Handle Errors here.
     var errorCode = error.code;
     var errorMessage = error.message;
-  });
+  });*/
+
+  //Write data to database
+  function writeUserData(userId, name, email) {
+    firebase.database().ref('users/' + userId).set({
+      username: name,
+      email: email
+    }).then(function(){
+      window.location = "home/home.html";
+    });
+  }
 
   //Add a readtime listener
   firebase.auth().onAuthStateChanged(firebaseUser => {
       if(firebaseUser){
-          console.log(firebaseUser);
-          window.location = 'home/home.html';
+          //console.log(firebaseUser.uid);
+          //console.log(FirstName.value+" "+LastName.value);
+          writeUserData(firebaseUser.uid,FirstName.value+" "+LastName.value,firebaseUser.email);
+         // window.location = 'home/home.html';
       }
       else{
           console.log("not logged in");
