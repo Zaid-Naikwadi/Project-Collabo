@@ -3,7 +3,10 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Dashboard</title>
+  <title>Project Collabo</title>
+
+  <script src="https://www.gstatic.com/firebasejs/5.8.3/firebase.js"></script>
+
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.7 -->
@@ -292,7 +295,7 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="#" class="btn btn-default btn-flat">Sign out</a>
+                  <a href="#" class="btn btn-default btn-flat" id="signout">Sign out</a>
                 </div>
               </li>
             </ul>
@@ -1267,5 +1270,36 @@
 <script src="dist/js/pages/dashboard.js"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="dist/js/demo.js"></script>
+
+<!-- Firebase -->
+<script src="home.js"></script>
+
+
+<!--Code by Zaid-->
+<script>
+  var config = {
+      apiKey: "AIzaSyBBZrXTL-mFOHw9EzrQarO-Nrkl082C8Lk",
+      authDomain: "project-collabo.firebaseapp.com",
+      databaseURL: "https://project-collabo.firebaseio.com",
+      projectId: "project-collabo",
+      storageBucket: "project-collabo.appspot.com",
+      messagingSenderId: "757376790492"
+    };
+    firebase.initializeApp(config);
+  </script>
+
+  <script>
+
+      firebase.auth().onAuthStateChanged(firebaseUser => {
+          if(firebaseUser){
+              alert("email: "+firebaseUser.email+" uid: "+firebaseUser.uid);
+          }
+          else{
+              console.log("not logged in");
+          }
+      });
+
+     
+  </script>
 </body>
 </html>
