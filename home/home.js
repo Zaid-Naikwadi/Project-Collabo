@@ -20,6 +20,10 @@
           });
         });
 
+    addProjectBtn.addEventListener('click', e =>{
+        window.location = "addproject.html";
+    });
+
     var fullname = document.getElementsByClassName("fullname");
       /*  var userId = firebase.auth().currentUser.uid;
         firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
@@ -45,7 +49,7 @@
 
              //PASS ABOVE USERID TO A FUNCTION AND INSERT OR WRITE WHILE CODING
              //DON'T WRITE EVERYTHING HERE
-             
+
              firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
               var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
               // ..
