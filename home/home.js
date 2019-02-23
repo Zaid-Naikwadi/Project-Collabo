@@ -20,21 +20,49 @@
           });
         });
 
-        /*function writeUserData(userId, name, email) {
+    var fullname = document.getElementsByClassName("fullname");
+      /*  var userId = firebase.auth().currentUser.uid;
+        firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+          var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+          // ..
+          console.log("username: "+username);
+          console.log("userID: "+userId);
+          console.log("data:"+snapshot.val());
+        });*/
+
+       /* function writeUserData(userId, name, email) {
           firebase.database().ref('users/' + userId).set({
             username: name,
             email: email
           });
-        }
+        }*/
 
         firebase.auth().onAuthStateChanged(firebaseUser => {
           if(firebaseUser){
-              alert("writing");
-              writeUserData(firebaseUser.uid,"asdfasdf",firebaseUser.email);
+             // alert("writing");
+             // writeUserData(firebaseUser.uid,firebaseUser.username,firebaseUser.email);
+             var userId = firebase.auth().currentUser.uid;
+
+             //PASS ABOVE USERID TO A FUNCTION AND INSERT OR WRITE WHILE CODING
+             //DON'T WRITE EVERYTHING HERE
+             
+             firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+              var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+              // ..
+              console.log("username: "+username);
+              console.log("userID: "+userId);
+              console.log("data:"+snapshot.val());
+              var i;
+              for (i = 0; i < fullname.length; i++) { 
+                fullname[i].innerHTML = username;
+              }
+              
+            });
+
           }
           else{
               console.log("not logged in");
           }
-      });*/
+      });
 
 }());

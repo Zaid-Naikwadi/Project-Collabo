@@ -44,6 +44,7 @@ var config = {
         .catch(e => console.log(e.message));
   });*/
 
+  var flag = false; // to differentiate b/w signup and login
   //Login Added by Kamlesh on 22/02/2019
   btnLogin.addEventListener('click',e=>{
     var email = txtEmail1.value;
@@ -60,6 +61,9 @@ var config = {
 
     var auth = firebase.auth();
     var promise = auth.signInWithEmailAndPassword(email,password);
+    promise.then(function(){
+      flag = true;
+    })
     promise.catch(e=>alert(e.message));
 
 
@@ -131,8 +135,10 @@ var config = {
       if(firebaseUser){
           //console.log(firebaseUser.uid);
           //console.log(FirstName.value+" "+LastName.value);
+          if(!flag)
           writeUserData(firebaseUser.uid,FirstName.value+" "+LastName.value,firebaseUser.email);
-         // window.location = 'home/home.html';
+          else
+          window.location = 'home/home.html';
       }
       else{
           console.log("not logged in");
