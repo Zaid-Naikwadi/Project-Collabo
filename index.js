@@ -23,6 +23,17 @@ var config = {
   var txtEmail1 = document.getElementById('id_email1');
   var txtPassword1 = document.getElementById('id_password1');
 
+  //Added by kamlesh silag for more details popup
+  var btnSubmit = document.getElementById("Submit");
+  var userid ;
+  var username;
+  var userEmail;
+  var collegeName = document.getElementById("id_CollegeName");
+  var mobileNo = document.getElementById("id_MobileNo");
+  var address = document.getElementById("id_Address");
+  //var tags = document.getElementById("tags");
+  
+
 
   /*btnSignup.addEventListener('click',e => {
       //Get email and password
@@ -45,6 +56,7 @@ var config = {
   });*/
 
   var flag = false; // to differentiate b/w signup and login
+
   //Login Added by Kamlesh on 22/02/2019
   btnLogin.addEventListener('click',e=>{
     var email = txtEmail1.value;
@@ -105,6 +117,24 @@ var config = {
 
   });
 
+
+  function newfun(userId,name,email)
+  {
+    userid = userId;
+    username = name;
+    userEmail = email;
+    $(".test3").modal('show');
+  }
+
+  btnSubmit.addEventListener('click',e=>
+  {
+      //alert(address)
+      writeUserData(userid,username,userEmail,collegeName.value,address.value,mobileNo.value);
+      alert(userid + "   "+ userEmail);
+      
+  });
+
+
   /*firebase.auth().setPersistence(firebase.auth.Auth.Persistence.SESSION)
   .then(function() {
     // Existing and future Auth states are now persisted in the current
@@ -120,11 +150,17 @@ var config = {
     var errorMessage = error.message;
   });*/
 
+ 
+
+
   //Write data to database
-  function writeUserData(userId, name, email) {
+  function writeUserData(userId, name, email,collegeName,Address,Mobileno) {
     firebase.database().ref('users/' + userId).set({
       username: name,
-      email: email
+      email: email,
+      collegename : collegeName,
+      address : Address,
+      mobileno : Mobileno
     }).then(function(){
       window.location = "home/home.html";
     });
@@ -136,8 +172,13 @@ var config = {
           //console.log(firebaseUser.uid);
           //console.log(FirstName.value+" "+LastName.value);
           if(!flag)
-          writeUserData(firebaseUser.uid,FirstName.value+" "+LastName.value,firebaseUser.email);
-          else
+          {
+              //userId = firebase.auth().currentUser.uid;
+              //userEmail = firebase.auth().currentUser.email;
+              newfun(firebaseUser.uid,FirstName.value+ " "+LastName.value,firebaseUser.email);
+             //writeUserData(firebaseUser.uid,FirstName.value+" "+LastName.value,firebaseUser.email);
+          }
+          else 
           window.location = 'home/home.html';
       }
       else{
