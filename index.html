@@ -157,6 +157,67 @@
                     <div class="clear"></div>
                 </nav>
             </header>
+
+
+            <!--For More details Popup Added by kamlesh silag on 23/02/2019-->
+            <p>
+            <a class="button" id="test3">Testing</a>
+            <div class="ui modal test3">
+              <div class="ui middle aligned center aligned grid">
+               <div class="column">
+                 <h2 class="ui blue image header">
+                   <div class="content">
+                       Provide More Details
+                   </div>
+                 </h2>
+
+                 <form class="ui large form">
+                   <div class="ui segment">
+                     <div class="field">
+                       <div class="ui left icon input">
+                         <i class="user icon"></i>
+                         <input id="id_CollegeName" type="text" name="college" placeholder="College Name">
+                       </div>
+                     </div>
+
+                    <div class="field">
+                     <div class="ui left icon input">
+                        <i class="user icon"></i>
+                       <input id="id_Address" type="text" name="address" placeholder="Address">
+                     </div>
+                    </div>
+
+                    <div class="field">
+                        <div class="ui left icon input">
+                           <i class="user icon"></i>
+                          <input id="id_MobileNo" type="text" name="Mobileno" placeholder="Mobile Number">
+                        </div>
+                    </div>
+
+
+                    <div class="field">
+                        <div class="ui left icon input">
+                     <div id="tags">
+                      <span class="tag">C</span>
+                      <span class="tag">Java</span>
+                      <input type="text" value="" placeholder="Add a skill" />
+                     </div>
+                     </div>
+                    </div>
+                  
+                  
+
+                   <div id="Submit" class="ui fluid large primary submit button">Submit 😊</div>
+                 </div>
+               </form>
+
+            
+             </div>
+          </div>
+        </div>
+      </p>
+        <!--end here by kamlesh-->
+
             <div class="content-container">
                 <div class="left-image float-right">
                    <!-- <img src="https://static-fastly.hackerearth.com/static/hackerearth/images/homepage_2/min/homepageGraphics-1.png" class="left-image-0">-->
@@ -272,6 +333,44 @@
       #gdpr-modal-content .button.disabled {
         background: #f5f6f6 !important;
       }
+
+      /* Code added for css for dynamic skills input by kamlesh silag*/
+      #tags{
+        float:left;
+        border:1px solid #ccc;
+        padding:4px;
+        font-family:Arial;
+      }
+      #tags span.tag{
+        cursor:pointer;
+        display:block;
+        float:left;
+        color:#555;
+        background:#add;
+        padding:5px 10px;
+        padding-right:30px;
+        margin:4px;
+      }
+      #tags span.tag:hover{
+      opacity:0.7;
+      }
+      #tags span.tag:after{
+        position:absolute;
+        content:"×";
+        border:1px solid;
+        border-radius:10px;
+        padding:0 4px;
+        margin:3px 0 10px 7px;
+        font-size:10px;
+      }
+      #tags input{
+        background:#eee;
+        border:0;
+        margin:4px;
+        padding:7px;
+        width:auto;
+      }
+      /* end by kamlesh */
     </style>
     
     <div id="gdpr-modal-content">
@@ -328,23 +427,54 @@
 
     <!-- Code By kamlesh silag on 23/02/2018 for login-->
     <script src='https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script>
-  <script >
+    <script >
 
-  $(function () {
-    $("#test").click(function () {
-      $(".test").modal('show');
-    });
+      $(function () {
+        $("#test").click(function () {
+          $(".test").modal('show');
+        });
 
-    $("#test2").click(function(){
-      $(".test").modal('hide');
-    });
-    $(".test").modal({
-      closable: true });
+        $("#test").click(function(){
+          $(".test2").modal('hide');
+        });
 
-  
-  });
+        $(".test").modal({
+          closable: true });
+
+        
+      });
   //# sourceURL=pen.js
   </script>
+
+
+
+
+  <!-- Code added for skills javascript by kamlesh silag on 23/02/2019-->
+  <script>
+    var tags ="c"+" "+"c++";
+    $(function(){
+
+        $('#tags input').on('focusout', function(){    
+        var txt= this.value.replace(/[^a-zA-Z0-9\+\-\.\#]/g,''); // allowed characters list
+        if(txt) $(this).before('<span class="tag">'+ txt +'</span>');
+          this.value="";
+
+        tags = tags+" "+txt;
+  
+        }).on('keyup',function( e ){
+          // comma|enter (add more keyCodes delimited with | pipe)
+          
+          if(/(188|13)/.test(e.which)) $(this).focusout();
+        });
+
+        $('#tags').on('click','.tag',function(){
+          if( confirm("Really delete this tag?") ) $(this).remove(); 
+        });
+
+        
+        });
+  </script>
+  
 
 </body>
 
