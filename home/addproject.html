@@ -38,6 +38,48 @@
   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
   <![endif]-->
 
+
+  
+  <style>
+  /* Code added for css for dynamic skills input by kamlesh silag*/
+  #tags{
+        float:left;
+        border:1px solid #ccc;
+        padding:4px;
+        font-family:Arial;
+      }
+      #tags span.tag{
+        cursor:pointer;
+        display:block;
+        float:left;
+        color:#555;
+        background:#add;
+        padding:5px 10px;
+        padding-right:30px;
+        margin:4px;
+      }
+      #tags span.tag:hover{
+      opacity:0.7;
+      }
+      #tags span.tag:after{
+        position:absolute;
+        content:"×";
+        border:1px solid;
+        border-radius:10px;
+        padding:0 4px;
+        margin:3px 0 10px 7px;
+        font-size:10px;
+      }
+      #tags input{
+        background:#eee;
+        border:0;
+        margin:4px;
+        padding:7px;
+        width:auto;
+      }
+      /* end by kamlesh */
+  </style>
+
   <!-- Google Font -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
@@ -549,7 +591,7 @@
                 <div class="box-body">
                   <div class="form-group">
                     <label for="exampleInputEmail1">Title</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter project title">
+                    <input type="name" class="form-control" id="exampleInputEmail1" placeholder="Enter project title">
                   </div>
                   <!--<div class="form-group">
                     <label for="exampleInputPassword1">Password</label>
@@ -561,13 +603,21 @@
                     <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
                   </div>
 
+                  <!--Added by kamlesh for technologies skills-->
+                  <label for="Tags">Tags/Technologies</label>
                   <div class="form-group">
-                    <label for="exampleInputEmail1">Tags/Technologies</label>
-                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter tags">
-                  </div>
+                      
+                      <div id="tags">
+                          <span class="tag">C</span>
+                          <span class="tag">Java</span>
+                          <input type="text" value="" placeholder="Add a skill" />
+                        </div>
+                    <!---label for="exampleInputEmail1">Tags/Technologies</label>
+                    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter tags"-->
+                  </div><br>
 
                   <div class="form-group">
-                    <label for="exampleInputFile">File input</label>
+                    <br><label for="exampleInputFile">File input</label>
                     <input type="file" id="exampleInputFile">
   
                     <p class="help-block">Example block-level help text here.</p>
@@ -1208,6 +1258,33 @@
       });
 
      
+  </script>
+
+
+<!-- Code added for tags/skills javascript by kamlesh silag on 23/02/2019-->
+<script>
+    var tags ="c"+" "+"c++";
+    $(function(){
+
+        $('#tags input').on('focusout', function(){    
+        var txt= this.value.replace(/[^a-zA-Z0-9\+\-\.\#]/g,''); // allowed characters list
+        if(txt) $(this).before('<span class="tag">'+ txt +'</span>');
+          this.value="";
+
+        tags = tags+" "+txt;
+  
+        }).on('keyup',function( e ){
+          // comma|enter (add more keyCodes delimited with | pipe)
+          
+          if(/(188|13)/.test(e.which)) $(this).focusout();
+        });
+
+        $('#tags').on('click','.tag',function(){
+          if( confirm("Really delete this tag?") ) $(this).remove(); 
+        });
+
+        
+        });
   </script>
 </body>
 </html>
