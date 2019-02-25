@@ -10,16 +10,17 @@
   firebase.initializeApp(config);
 
   var user = null;
+  var userId;
+  var currenLocation=document.URL;
+  var datetoken= currenLocation.split('?-')[1];
+  datetoken=datetoken.split('#')[0];
+  console.log("URL="+currenLocation);
+  console.log("Token="+datetoken);
 
     signoutBtn = document.getElementById("signout");
 
     signoutBtn.addEventListener('click',e => {
-        firebase.auth().signOut().then(function() {
-            // Sign-out successful.
-            window.location = '../index.html';
-          }).catch(function(error) {
-            // An error happened.
-          });
+        addLogoutTime(userId,datetoken);
         });
 
     addProjectBtn.addEventListener('click', e =>{
@@ -47,7 +48,7 @@
           if(firebaseUser){
              // alert("writing");
              // writeUserData(firebaseUser.uid,firebaseUser.username,firebaseUser.email);
-             var userId = firebase.auth().currentUser.uid;
+             userId = firebase.auth().currentUser.uid;
              user = firebaseUser;
 
              //PASS ABOVE USERID TO A FUNCTION AND INSERT OR WRITE WHILE CODING
@@ -72,10 +73,13 @@
           }
       });
 
-
-
-
-
+      /**
+       For retriving all projects form database that matches with user tags
+       */
+       /* var db;
+        db=firebase.database();
+        var ref=db.ref('Projects');
+        ref.on('value',getData,errData);*/
 
 
       /* For Adding new project
@@ -138,3 +142,68 @@
 
 
 }());
+
+function addLogoutTime(userId,datetoken)
+{
+  console.log("Logout=="+userId);
+  console.log("Date token"+datetoken);
+  var t1=firebase.database().ref('users/'+userId+'/dates/-'+datetoken).once('value').then(function(snapshot) {
+    var logindate = (snapshot.val() && snapshot.val().logindate) || 'Anonymous';
+    // ..
+    var logintime=snapshot.val().logintime;
+    alert(logindate);
+    var now=new Date();
+    var dd = now.getDate();
+        var mm = now.getMonth() + 1; //January is 0!
+        var yyyy = now.getFullYear();
+
+        if (dd < 10) {
+          dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+          mm = '0' + mm;
+        }
+
+      var  today = dd + '/' + mm + '/' + yyyy;
+    var time=now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+    //console.log("username: "+username);
+    console.log("userID: "+userId);
+    console.log("data:"+snapshot.val().logintime);
+    var database=firebase.database();
+       var ref=database.ref('users/'+userId+'/dates/-'+datetoken);
+       var data=
+       {
+         logindate:logindate,
+         logintime:logintime,
+         logouttime:time,
+         logoutdate:today
+       };
+       ref.update(data);
+    // firebase.auth().signOut().then(function() {
+    //   addLogoutTime(userId,datetoken);
+    //   // Sign-out successful.
+    //  // window.location = '../index.html';
+    // }).catch(function(error) {
+      // An error happened.
+    }).then(function(){
+      firebase.auth().signOut().then(function() {
+        //   addLogoutTime(userId,datetoken);
+        //   // Sign-out successful.
+         window.location = '../index.html';});
+    });
+  };
+  
+
+//by akshay getting projects
+/*function getData(data1)
+{
+  console.log(data1.val());
+  var projects=data.val();
+
+}
+
+function errData(err)
+{
+  console.log(err);
+}*/
