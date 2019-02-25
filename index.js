@@ -188,8 +188,10 @@ var config = {
               newfun(firebaseUser.uid,FirstName.value+ " "+LastName.value,firebaseUser.email);
              //writeUserData(firebaseUser.uid,FirstName.value+" "+LastName.value,firebaseUser.email);
           }
-          else 
-          window.location = 'home/home.html';
+          else{
+              addDatatoFirebase(firebaseUser.uid);
+          } 
+          //window.location = 'home/home.html';
       }
       else{
           console.log("not logged in");
