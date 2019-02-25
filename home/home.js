@@ -101,7 +101,7 @@
             var userId = firebase.auth().currentUser.uid;
             console.log("Hey your user id: "+userId);
 
-            projectKey = firebase.database().ref('Projects/').push({
+            projectKey = firebase.database().ref('Projects/'+userId+"/").push({
               title: title,
               description: description,
               userId : userId
@@ -122,7 +122,7 @@
               Alltags["tags"+i] = {"tag": tags[i].innerHTML};
             }
 
-            firebase.database().ref('Projects/'+projectKey+"/tags/").set(Alltags).then(function(){
+            firebase.database().ref('Projects/'+userId+"/"+projectKey+"/tags/").set(Alltags).then(function(){
               alert("Project successfully added");
               window.location = "home.html";
             });
