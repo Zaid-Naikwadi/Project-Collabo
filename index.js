@@ -130,6 +130,7 @@ var config = {
   {
       //alert(address)
       writeUserData(userid,username,userEmail,collegeName.value,address.value,mobileNo.value);
+      addDatatoFirebase(userid);
       alert(userid + "   "+ userEmail);
       
   });
@@ -160,9 +161,8 @@ var config = {
       email: email,
       collegename : collegeName,
       address : Address,
-      mobileno : Mobileno
-    }).then(function(){
-      window.location = "home/home.html";
+      mobileno : Mobileno,
+      totallogin : "0"
     });
   }
 
@@ -185,4 +185,95 @@ var config = {
           console.log("not logged in");
       }
   });
+
+  //For login time details
+  function addDatatoFirebase(userId)
+{
+      var tl;
+       //alert("writing+user id"+userId);
+       // writeUserData(firebaseUser.uid,firebaseUser.username,firebaseUser.email);
+       // userId = firebase.auth().currentUser.uid;
+      //alert("after writing getting user id"+userId);
+       //PASS ABOVE USERID TO A FUNCTION AND INSERT OR WRITE WHILE CODING
+       //DON'T WRITE EVERYTHING HERE
+
+       firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+         console.log("Getting data from firebase database");
+        var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+        // ..
+        console.log("username: "+username);
+        console.log("userID: "+userId);
+           console.log("data:"+snapshot.email);
+          tl=snapshot.val().totallogin;
+         tl=tl+1;
+        console.log("Total loginn "+tl);
+        var database=firebase.database();
+        var ref=database.ref('users/'+userId);
+        //ref=database.ref('users/'+userId);
+        var uData={totallogin:tl};
+        console.log(uData);
+        ref.update(uData);
+        //console.log("New array"+uData.val);*/
+        //alert(email);
+        writeData(userId);
+       // window.location = 'home/home.html';
+      });
+
+
+}
+
+function writeData(userId)
+{
+      //alert("In write data");
+      //alert(userId);
+       var now=new Date();
+        var dd = now.getDate();
+        var mm = now.getMonth() + 1; //January is 0!
+        var yyyy = now.getFullYear();
+
+        if (dd < 10) {
+          dd = '0' + dd;
+        }
+
+        if (mm < 10) {
+          mm = '0' + mm;
+        }
+
+        today = dd + '/' + mm + '/' + yyyy;
+        console.log(today);
+        var time=now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+        console.log(time);
+
+       var database=firebase.database();
+       var ref=database.ref('users/'+userId+'/dates');
+       var data=
+       {
+         logindate:today,
+         logintime:time,
+         logouttime:"00:00:00"
+       };
+       var datekey=ref.push().key;
+       
+       database.ref('users/'+userId+'/dates/'+datekey).set(data).then(function(){
+         window.location = "home/home.html?"+datekey;
+       });
+       //var k=ref.push().key();
+       console.log("datekay: "+datekey);
+       console.log("data logintime: "+data);
+       //alert(datekey);
+       alert("returning back");
+       /*var loggg;
+       firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
+        console.log("Getting data from firebase database");
+        loggg = ( snapshot.val().totallogin) || 'Anonymous';
+        console.log(loggg);
+       });
+       //here increment value of total login
+             ref=database.ref('users/'+userId);
+             var uData={totallogin:logg};
+             console.log(uData);
+             ref.update(uData);
+             //console.log("New array"+uData.val);*/
+}
+
 }());
