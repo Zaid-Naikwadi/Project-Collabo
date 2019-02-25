@@ -44,6 +44,8 @@
         }*/
 
         firebase.auth().onAuthStateChanged(firebaseUser => {
+          
+
           if(firebaseUser){
              // alert("writing");
              // writeUserData(firebaseUser.uid,firebaseUser.username,firebaseUser.email);
@@ -65,6 +67,11 @@
               }
               
             });
+
+
+            //My projects adding Dynamically function 
+            my_projects();
+
 
           }
           else{
@@ -122,7 +129,7 @@
               Alltags["tags"+i] = {"tag": tags[i].innerHTML};
             }
 
-            firebase.database().ref('Projects/'+projectKey+"/tags/").set(Alltags).then(function(){
+            firebase.database().ref('Projects/'+userId+"/"+projectKey+"/tags/").set(Alltags).then(function(){
               alert("Project successfully added");
               window.location = "home.html";
             });
@@ -134,10 +141,50 @@
       }
 
 
-      // For my projects Checking
+      // For my projects displaying 
       // Added by kamlesh silag on 25/02/2019 
 
-      
+      function my_projects()
+      {
+
+        var userId = firebase.auth().currentUser.uid;
+        var ref = firebase.database().ref('Projects/'+userId+"/");
+
+        ref.on('value',function(snapshot){
+            console.log("data : "+snapshot.val());
+
+            var temp = snapshot.val();
+            var keys = Object.keys(temp);
+            console.log(keys);
+
+            for(var i=0;i<keys.length;i++)
+            {
+              var k = keys[i];
+              var title = temp[k].title;
+              var description = temp[k].description;
+              console.log("title : " +title);
+              console.log("Description : " +description);
+
+              $(".rowmyprojects").append("<div class='col-lg-15 col-xs-12'>"+
+              "<!-- small box -->"+
+              "<div class='small-box bg-aqua'>"+
+                "<div class='inner'>"+
+                  "<h3>"+title+"</h3>"+
+                  "<p>description : "+description+"</p>"+
+                  "<p>Tags : </p><p id='tags'><p id='tags'> </p>"+
+                "</div>"+
+                "<div class='icon'>"+
+                  "<i class='ion ion-bag'></i>"+
+                "</div>"+
+                "<a href='#' class='small-box-footer'>More info <i class='fa fa-arrow-circle-right'></i></a>"+
+              "</div>"+
+            "</div>")
+            }
+        });
+
+        
+      }
+
 
 
 
