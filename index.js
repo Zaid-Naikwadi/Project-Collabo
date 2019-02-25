@@ -129,7 +129,8 @@ var config = {
   btnSubmit.addEventListener('click',e=>
   {
       //alert(address)
-      writeUserData(userid,username,userEmail,collegeName.value,address.value,mobileNo.value);
+      var tags = document.getElementsByClassName("tag");
+      writeUserData(userid,username,userEmail,collegeName.value,address.value,mobileNo.value,tags);
       alert(userid + "   "+ userEmail);
       
   });
@@ -154,14 +155,23 @@ var config = {
 
 
   //Write data to database
-  function writeUserData(userId, name, email,collegeName,Address,Mobileno) {
+  function writeUserData(userId, name, email,collegeName,Address,Mobileno,tags) {
     firebase.database().ref('users/' + userId).set({
       username: name,
       email: email,
       collegename : collegeName,
       address : Address,
       mobileno : Mobileno
-    }).then(function(){
+    });
+
+    var Alltags = {};
+    console.log(tags[0].innerHTML)
+    for(var i=0;i<tags.length;i++){
+      console.log("Your tags: "+tags[i].innerHTML);
+      Alltags["tags"+i] = {"tag": tags[i].innerHTML};
+    }
+
+    firebase.database().ref('users/'+userId+"/skills/").set(Alltags).then(function(){
       window.location = "home/home.html";
     });
   }

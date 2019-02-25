@@ -101,7 +101,7 @@
             var userId = firebase.auth().currentUser.uid;
             console.log("Hey your user id: "+userId);
 
-            projectKey = firebase.database().ref('Projects/').push({
+            projectKey = firebase.database().ref('Projects/'+userId+"/").push({
               title: title,
               description: description,
               userId : userId
@@ -132,6 +132,12 @@
             console.log("How can you add project when you are not logged in");
           }
       }
+
+
+      // For my projects Checking
+      // Added by kamlesh silag on 25/02/2019 
+
+      
 
 
 
