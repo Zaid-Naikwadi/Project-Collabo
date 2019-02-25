@@ -213,9 +213,7 @@
       
       function all_projects()
       {
-
-        alert('called');
-        
+                
         var ref3 = firebase.database().ref('Projects/');
         ref3.on('value',function(snapshot3){
 
