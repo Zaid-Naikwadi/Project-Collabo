@@ -163,7 +163,7 @@ var config = {
       collegename : collegeName,
       address : Address,
       mobileno : Mobileno,
-      totallogin : "0"
+      totallogin : 0
     });
 
     var Alltags = {};
