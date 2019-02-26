@@ -26,6 +26,18 @@
   }
   
 
+    //By kamlesh on 26/02/2019
+    $(document).ready(function(){
+  
+      $(document).on("click", ".moreinfoBtn" , function() {
+  
+        var pkey = $(this).attr('value');
+        console.log("key is "+pkey);
+        window.location = "project.html?"+pkey;
+      });
+    });
+
+
     signoutBtn = document.getElementById("signout");
 
     signoutBtn.addEventListener('click',e => {
@@ -153,6 +165,8 @@
 
       // For my projects displaying 
       // Added by kamlesh silag on 25/02/2019 
+      /* 
+                                */
 
       function my_projects()
       {
@@ -226,6 +240,9 @@
     * 25/02/2019
     * For Login time details
     */
+   /* 
+                                */
+
     function addLogoutTime(userId,datetoken)
     {
     //console.log("Logout=="+userId);
@@ -277,7 +294,11 @@
       });
 };
 
+
       //For all projects by kamlesh silag on 25/02/2019 afternoon
+
+      /* 
+                                */
       
       function all_projects()
       {
@@ -338,14 +359,16 @@
                       "<!-- small box -->"+
                       "<div class='small-box bg-aqua'>"+
                         "<div class='inner'>"+
-                          "<h3>"+title+"</h3>"+
+                          "<h3>"+title+" "+k+"</h3>"+
                           "<p><b>Description : </b>"+description+"</p>"+
                           "<p><b>Tags : </b>"+tags+"</p>"+
                         "</div>"+
                         "<div class='icon'>"+
                           "<i class='ion ion-bag'></i>"+
                         "</div>"+
-                        "<a href='#' class='small-box-footer'>More info <i class='fa fa-arrow-circle-right'></i></a>"+
+                        //"<input type='hidden' name='moreinfohidden' id='moreinfohidden"+i+ "' value="+k+"></input>"+
+
+                        "<a href='#' id='moreinfohidden"+i+ "' value="+k + " class='small-box-footer moreinfoBtn'>More info<i class='fa fa-arrow-circle-right'></i></a>"+
                       "</div>"+
                     "</div>")
             }
@@ -354,6 +377,11 @@
       });
     
     }
+
+
+    
+    /* 
+                                */
 
       
 
