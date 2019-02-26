@@ -631,7 +631,7 @@
                 <!-- /.box-body -->
   
                 <div class="box-footer">
-                  <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" id="submitBtn" class="btn btn-primary">Submit</button>
                 </div>
              <!-- </form>-->
             </div>
@@ -1246,20 +1246,6 @@
     firebase.initializeApp(config);
   </script>-->
 
-  <script>
-
-      firebase.auth().onAuthStateChanged(firebaseUser => {
-          if(firebaseUser){
-              alert("email: "+firebaseUser.email+" uid: "+firebaseUser.uid);
-          }
-          else{
-              console.log("not logged in");
-          }
-      });
-
-     
-  </script>
-
 
 <!-- Code added for tags/skills javascript by kamlesh silag on 23/02/2019-->
 <script>
@@ -1286,5 +1272,7 @@
         
         });
   </script>
+
+
 </body>
 </html>

@@ -10,16 +10,26 @@
   firebase.initializeApp(config);
 
   var user = null;
+  var userId;
+
+  try {
+   // Block of code to try
+    var currenLocation=document.URL;
+  var datetoken= currenLocation.split('?-')[1];
+  datetoken=datetoken.split('#')[0];
+  console.log("URL="+currenLocation);
+  console.log("Token="+datetoken);
+  }
+  catch(err) {
+    //Block of code to handle errors
+    console.log("cannot split this URL");
+  }
+  
 
     signoutBtn = document.getElementById("signout");
 
     signoutBtn.addEventListener('click',e => {
-        firebase.auth().signOut().then(function() {
-            // Sign-out successful.
-            window.location = '../index.html';
-          }).catch(function(error) {
-            // An error happened.
-          });
+      addLogoutTime(userId,datetoken);  //Add logout time and then signout
         });
 
     addProjectBtn.addEventListener('click', e =>{
@@ -47,9 +57,10 @@
           if(firebaseUser){
              // alert("writing");
              // writeUserData(firebaseUser.uid,firebaseUser.username,firebaseUser.email);
+             //addNewProject();
              my_projects();
              all_projects();
-             var userId = firebase.auth().currentUser.uid;
+             userId = firebase.auth().currentUser.uid;
              user = firebaseUser;
 
              //PASS ABOVE USERID TO A FUNCTION AND INSERT OR WRITE WHILE CODING
@@ -87,15 +98,17 @@
 
       var title = document.getElementById("projectTitle");
       var description = document.getElementById("projectDescription");
-      var submitBtn = document.getElementById("submit");
+      var submitBtn = document.getElementById("submitBtn");
       
-
+      console.log("asdfasdfasdfasdf");
       
 
       submitBtn.addEventListener("click", e =>{
+          console.log("in submit");
           var tags = document.getElementsByClassName("tag");
           writeAddProjectData(title.value,description.value,tags);
       });
+
 
       function writeAddProjectData(title,description,tags){
         
@@ -208,6 +221,61 @@
       }
 
 
+
+    /*Akshay Akole
+    * 25/02/2019
+    * For Login time details
+    */
+    function addLogoutTime(userId,datetoken)
+    {
+    //console.log("Logout=="+userId);
+   // console.log("Date token"+datetoken);
+    var t1=firebase.database().ref('users/'+userId+'/dates/-'+datetoken).once('value').then(function(snapshot) {
+      var logindate = (snapshot.val() && snapshot.val().logindate) || 'Anonymous';
+      // ..
+      var logintime=snapshot.val().logintime;
+      alert(logindate);
+      var now=new Date();
+      var dd = now.getDate();
+          var mm = now.getMonth() + 1; //January is 0!
+          var yyyy = now.getFullYear();
+
+          if (dd < 10) {
+            dd = '0' + dd;
+          }
+
+          if (mm < 10) {
+            mm = '0' + mm;
+          }
+
+        var  today = dd + '/' + mm + '/' + yyyy;
+      var time=now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+      //console.log("username: "+username);
+      console.log("userID: "+userId);
+      console.log("data:"+snapshot.val().logintime);
+      var database=firebase.database();
+        var ref=database.ref('users/'+userId+'/dates/-'+datetoken);
+        var data=
+        {
+          logindate:logindate,
+          logintime:logintime,
+          logouttime:time,
+          logoutdate:today
+        };
+        ref.update(data);
+      // firebase.auth().signOut().then(function() {
+      //   addLogoutTime(userId,datetoken);
+      //   // Sign-out successful.
+      //  // window.location = '../index.html';
+      // }).catch(function(error) {
+        // An error happened.
+      }).then(function(){
+        firebase.auth().signOut().then(function() {
+          //   addLogoutTime(userId,datetoken);
+          //   // Sign-out successful.
+          window.location = '../index.html';});
+      });
+};
 
       //For all projects by kamlesh silag on 25/02/2019 afternoon
       
