@@ -11,11 +11,20 @@
 
   var user = null;
   var userId;
-  var currenLocation=document.URL;
+
+  try {
+   // Block of code to try
+    var currenLocation=document.URL;
   var datetoken= currenLocation.split('?-')[1];
   datetoken=datetoken.split('#')[0];
   console.log("URL="+currenLocation);
   console.log("Token="+datetoken);
+  }
+  catch(err) {
+    //Block of code to handle errors
+    console.log("cannot split this URL");
+  }
+  
 
     signoutBtn = document.getElementById("signout");
 
@@ -48,9 +57,10 @@
           if(firebaseUser){
              // alert("writing");
              // writeUserData(firebaseUser.uid,firebaseUser.username,firebaseUser.email);
+             //addNewProject();
              my_projects();
              all_projects();
-             var userId = firebase.auth().currentUser.uid;
+             userId = firebase.auth().currentUser.uid;
              user = firebaseUser;
 
              //PASS ABOVE USERID TO A FUNCTION AND INSERT OR WRITE WHILE CODING
@@ -88,15 +98,17 @@
 
       var title = document.getElementById("projectTitle");
       var description = document.getElementById("projectDescription");
-      var submitBtn = document.getElementById("submit");
+      var submitBtn = document.getElementById("submitBtn");
       
-
+      console.log("asdfasdfasdfasdf");
       
 
       submitBtn.addEventListener("click", e =>{
+          console.log("in submit");
           var tags = document.getElementsByClassName("tag");
           writeAddProjectData(title.value,description.value,tags);
       });
+
 
       function writeAddProjectData(title,description,tags){
         
@@ -207,63 +219,6 @@
 
 
       }
-
-
-
-
-      /*  Zaid Naikwadi 
-      * 25/2/2019
-      * For display all projects to user
-      */
-
-     function displayAllProjects(){
-      var userId = firebase.auth().currentUser.uid;
-
-     /* firebase.database.ref('Projects/').on('value',function(snapshot1){
-          var temp1 = snapshot1.val();
-          var keys1 = Object.keys(temp1);
-
-          for(var j=0;j<keys1.length;j++){
-            var p = keys1[j];
-            var id = temp1[p].
-          }
-      });*/
-      var ref = firebase.database().ref('Projects/'+userId+"/");
-
-      ref.on('value',function(snapshot){
-          console.log("data : "+snapshot.val());
-
-          var temp = snapshot.val();
-          var keys = Object.keys(temp);
-          console.log(keys);
-
-          for(var i=0;i<keys.length;i++)
-          {
-            var k = keys[i];
-            var title = temp[k].title;
-            var description = temp[k].description;
-            console.log("title : " +title);
-            console.log("Description : " +description);
-
-            $(".rowmyprojects").append("<div class='col-lg-15 col-xs-12'>"+
-            "<!-- small box -->"+
-            "<div class='small-box bg-aqua'>"+
-              "<div class='inner'>"+
-                "<h3>"+title+"</h3>"+
-                "<p>description : "+description+"</p>"+
-                "<p>Tags : </p><p id='tags'><p id='tags'> </p>"+
-              "</div>"+
-              "<div class='icon'>"+
-                "<i class='ion ion-bag'></i>"+
-              "</div>"+
-              "<a href='#' class='small-box-footer'>More info <i class='fa fa-arrow-circle-right'></i></a>"+
-            "</div>"+
-          "</div>")
-          }
-      });
-
-
-    }
 
 
 
