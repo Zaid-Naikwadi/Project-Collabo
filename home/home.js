@@ -1,4 +1,5 @@
 (function(){
+  
   var config = {
     apiKey: "AIzaSyBBZrXTL-mFOHw9EzrQarO-Nrkl082C8Lk",
     authDomain: "project-collabo.firebaseapp.com",
@@ -7,10 +8,18 @@
     storageBucket: "project-collabo.appspot.com",
     messagingSenderId: "757376790492"
   };
+
   firebase.initializeApp(config);
 
   var user = null;
   var userId;
+  var username;
+  
+  var ptitle="";
+  var pdescription="";
+  var projectKey="";
+  var pkey="";
+  
 
   try {
    // Block of code to try
@@ -35,6 +44,9 @@
         console.log("key is "+pkey);
         window.location = "project.html?"+pkey;
       });
+  
+
+
     });
 
 
@@ -75,6 +87,7 @@
 
              //project.html
              set_Project_Details();
+             
 
              userId = firebase.auth().currentUser.uid;
              user = firebaseUser;
@@ -83,7 +96,7 @@
              //DON'T WRITE EVERYTHING HERE
 
              firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
-              var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
+              username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
               // ..
               console.log("username: "+username);
               console.log("userID: "+userId);
@@ -119,13 +132,13 @@
       
       console.log("asdfasdfasdfasdf");
       
-
+try{
       submitBtn.addEventListener("click", e =>{
           console.log("in submit");
           var tags = document.getElementsByClassName("tag");
           writeAddProjectData(title.value,description.value,tags);
       });
-
+    }catch(err){console.log('err');}
 
       function writeAddProjectData(title,description,tags)
       {
@@ -183,10 +196,12 @@
         ref.on('value',function(snapshot){
             console.log("data : "+snapshot.val());
 
+            try{
+
             var temp = snapshot.val();
             var keys = Object.keys(temp);
             console.log(keys);
-
+            
 
             for(var i=0;i<keys.length;i++)
             {
@@ -220,6 +235,7 @@
 
               });
 
+
               $(".rowmyprojects").append("<div class='col-lg-15 col-xs-12'>"+
               "<!-- small box -->"+
               "<div class='small-box bg-aqua'>"+
@@ -235,6 +251,11 @@
               "</div>"+
             "</div>")
             }
+
+          }catch(err)
+          {
+            console.log('error');
+          }
         });
 
 
@@ -253,11 +274,15 @@
     {
     //console.log("Logout=="+userId);
    // console.log("Date token"+datetoken);
-    var t1=firebase.database().ref('users/'+userId+'/dates/-'+datetoken).once('value').then(function(snapshot) {
+   alert("datetoken : "+datetoken);
+    firebase.database().ref('users/'+userId+'/dates/-'+datetoken+"/").once('value').then(function(snapshot) {
       var logindate = (snapshot.val() && snapshot.val().logindate) || 'Anonymous';
+      alert('fetched'  +snapshot.val().logindate);
       // ..
+      alert('logindate ' +logindate);
       var logintime=snapshot.val().logintime;
-      alert(logindate);
+      alert('login time '+ logintime);
+      
       var now=new Date();
       var dd = now.getDate();
           var mm = now.getMonth() + 1; //January is 0!
@@ -301,14 +326,14 @@
 }
 
 
-      //For all projects by kamlesh silag on 25/02/2019 afternoon
+      //For all projects by kamlesh silag on 25/02/2019 
 
       /* 
                                 */
       
       function all_projects()
       {
-                
+         try{       
         var ref3 = firebase.database().ref('Projects/');
         ref3.on('value',function(snapshot3){
 
@@ -381,12 +406,15 @@
           });
         }
       });
+    }
+    catch(err){console.log("errror");}
     
     }
 
 
 
-    //Added by Kamlesh silag on 26/02/2019 for fetching project records from database
+    //Added by Kamlesh silag on 26/02/2019 
+    //for fetching project records from database
             /* | | | | | | | | | | | | | | | 
               | | | | | | | | | | | | | | | */
 
@@ -411,11 +439,13 @@
       var txtproject_title = document.getElementById('projectTitle');
       var txtproject_description = document.getElementById('projectDescription');
       var txtproject_tags = document.getElementById('projecttags');
+      var txthiddenProjectKey = document.getElementById('hiddenProjectKey');
 
-      var ptitle;
-      var pdescription;
-      var projectKey;
+      ptitle="";
+      pdescription="";
+      projectKey="";
       var tags="";
+      pkey = "";
 
       var ref = firebase.database().ref('Projects/');
       ref.on('value',function(snapshot3){
@@ -441,6 +471,7 @@
                     console.log("projectkey : "+projectKey);
                     if(projectKey==datetoken)
                       {
+                        pkey = projectKey;
                         ptitle = temp2[projectKey].title;
                         pdescription = temp2[projectKey].description;
                         tags="";
@@ -468,26 +499,160 @@
                       });
 
 
-                        
-                        break;
                       }
                       
+                      
                 }
+               
 
 
       });
 
     }
 
+    try{
+
+   txthiddenProjectKey.innerHTML=datetoken;
    txtproject_title.innerHTML=ptitle;
    txtproject_description.innerHTML=pdescription;
    txtproject_tags.innerHTML=tags+"";
    
+   
+    }catch(err){
+      console.log("error");
+    }
+
+    //for getting key of project from 
+
+
   });
 
   }
+
+
+
+  /////////////////////////////////////////////////////
+  //Timeline project by kamlesh silag on 27/02/2019 
+  // for dynamicalling adding messages on the screen and firebase
+  /////////////////////////////////////////////////////
+
+
+  var projectKey = "-LZeub_mTXceGj4ZglaL";
+  var ref = firebase.database().ref("timeline/"+projectKey+"/");
+
+  //var projectTitleTimeline = document.getElementById("projectTitleTimeline");
+  //to be done LATER ON
+  try{
+  var inputmessage = document.getElementById("comment");
+  inputmessage.addEventListener("keyup", function(event) {
+    if (event.key === "Enter") {
+
+      var today = new Date();
+      var time = today.getHours() + ":" + today.getMinutes() ;
+      var username = fullname[0].innerHTML;
+      console.log("username current: "+username);
+
+      ref.push({
+        message: inputmessage.value,
+        username: username,
+        time : time
+      });
+
+
+        $('.timeline').prepend("<li>"+
+        "<i class='fa fa-comments bg-yellow'></i>"+
+
+        "<div class='timeline-item'>"+
+          "<span class='time'><i class='fa fa-clock-o'></i> "+time+"</span>"+
+
+          "<h3 class='timeline-header'><a href='#'>"+fullname[0].innerHTML+"</a> sent a message</h3>"+
+
+          "<div class='timeline-body'>"+
+            inputmessage.value+
+            "</div>"+
+          
+          "<div class='timeline-footer'>"+
+            "<a class='btn btn-primary btn-xs'>Read more</a>&nbsp"+
+            "<a class='btn btn-danger btn-xs delete'>Delete</a>"+
+          "</div>"+
+        "</div>"+
+      "</li>");
+    }
+
+    inputmessage.innerHTML="";
+  
+});
+
+}
+catch(err){
+  
+}
+
+
+
+    
+    /////////////////////////////////////////////////////
+  // to set my messages on screen by kamlesh silag
+  // to fetch from firebase and add on screen
+  ///////////////////////////////////////////
+  //////////
+    
+        var reftimeline = firebase.database().ref('timeline/'+projectKey+"/");
+        reftimeline.on('value',function(snapshottimeline){
+          
+          var temptimeline = snapshottimeline.val();
+          var keystimeline = Object.keys(temptimeline);
+
+          for(var timeline = 0; timeline < keystimeline.length;timeline++)
+          {
+            //fetching data from firebase
+            x = keystimeline[timeline];
+
+            //data from firebase
+            user_message = temptimeline[x].message;
+            user_name = temptimeline[x].username;
+            user_time = temptimeline[x].time;
+            
+            console.log("x usermessage : "+user_message);
+
+            $('.timeline').prepend("<li>"+
+        "<i class='fa fa-comments bg-yellow'></i>"+
+
+        "<div class='timeline-item'>"+
+          "<span class='time'><i class='fa fa-clock-o'></i> "+user_time+"</span>"+
+
+          "<h3 class='timeline-header'><a href='#'>"+user_name+"</a> sent a message</h3>"+
+
+          "<div class='timeline-body'>"+user_message+
+            "</div>"+
+          
+          "<div class='timeline-footer'>"+
+            "<a class='btn btn-primary btn-xs'>Read more</a>&nbsp"+
+            "<a class='btn btn-danger btn-xs delete'>Delete</a>"+
+          "</div>"+
+        "</div>"+
+      "</li>");
+          }
+        });
+
+
+
+        //Collaboration button by kamlesh silag
+        //////////////////////////////////////
+
+        var collaboButton = document.getElementById("collab");
+
+        collaboButton.addEventListener('click',e=>
+        {
+            alert('clicked collb');
+            var projectKey_ = document.getElementById('hiddenProjectKey').innerHTML;
+            var refcollab = firebase.database().ref("users/requests/"+projectKey_+"/");
+            refcollab.push({
+              Userid : userId,
+            });
+            
+        });
    
-      
 
 
 }());

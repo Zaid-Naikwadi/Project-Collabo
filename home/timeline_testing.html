@@ -31,6 +31,9 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+
+
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -365,7 +368,7 @@
         </li>
         <!--Added by ZAID-->
         <li>
-          <a id="addProjectBtn" href="#">
+          <a id="addProjectBtn" href="addproject.html">
             <i class="fa fa-th"></i> <span>Add new project</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green"></small>
@@ -374,8 +377,8 @@
         </li>
         <!--Add end Zaid-->
         <li>
-          <a href="pages/widgets.html">
-            <i class="fa fa-th"></i> <span>Widgets</span>
+          <a href="timeline_testing.html">
+            <i class="fa fa-th"></i> <span>Timeline</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green">new</small>
             </span>
@@ -523,65 +526,72 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1>
-        PROJECT
-
+      <h1 id="projectTitleTimeline">Project
+      </h1>
+        <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">PROJECT</li>
+        <li class="active">Timeline</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
       <!-- Small boxes (Stat box) -->
-                           <div class="row">
+        <div class="rowtimeline">
+                <div class="col-md-12">
+                        <div class="nav-tabs-custom">
+                          <ul class="nav nav-tabs">
+                            <li><a href="#timeline" data-toggle="tab">Timeline</a></li>
+                          </ul>
+                          <div class="tab-content">
+                            
+              
+                                <ul class="list-inline">
+                                  <li><a href="#" class="link-black text-sm"><i class="fa fa-share margin-r-5"></i> Share</a></li>
+                                  <li><a href="#" class="link-black text-sm"><i class="fa fa-thumbs-o-up margin-r-5"></i> Like</a>
+                                  </li>
+                                  <li class="pull-right">
+                                    <a href="#" class="link-black text-sm"><i class="fa fa-comments-o margin-r-5"></i> Comments
+                                      (5)</a></li>
+                                </ul>
+              
+                                <input class="form-control input-sm" id="comment" type="text" placeholder="Type a comment">
+                              </div>
+                              <!-- /.post -->
+                            </div>
+                            <!-- /.tab-pane -->
+                            <div class="tab-pane" id="timeline">
+                              <!-- The timeline -->
+                              <ul class="timeline timeline-inverse">
+                                <!-- timeline time label -->
+                                
+                                
+                                <!-- END timeline item -->
+                                <!-- timeline item -->
+                                
+                                <!-- END timeline item -->
+                                <!-- timeline time label -->
+                                
 
 
-        <!--Added by kamlesh silag on 26/02/2019-->
-        <div class="col-md-12">
-            <!-- general form elements -->
-            <div class="box box-primary">
-                <div class="box-header with-border">
-                  <h3 class="box-title">Project</h3>
-                </div>
-                
-                
-                <div class="box-body">
-                    <div class="form-group">
-                      <label for="projectTitle">Title:</label><p id='title'></p>
-                      <label type="name" class="form-control" id="projectTitle" >
-                    </div>
-                    
-                    <p id="hiddenProjectKey" hidden ></p>
-
-                    <div class="form-group">
-                      <label>Description:</label>
-                      <label id="projectDescription" class="form-control" rows="3" ></label>
-                    </div>
-  
-                    <!--Added by kamlesh for technologies skills-->
-                    <div class="form-group">
-                        <label for="Tags">Tags/Technologies:</label>  
-                        <label id="projecttags" class="form-control" rows="3" ></label>
-                    </div>
-                    <br>
-  
-                    <div class="form-group">
-                      <br><label for="exampleInputFile">Files:</label>
-                    </div>
-
-
-            </div>
-                  <!-- /.box-body -->
-    
-            <div class="box-footer">
-                <button type="Submit" id="collab" class="btn btn-primary" style="display: block; margin: 0 auto">Collaborate</button>
-            </div>
-             
-        </div>
+                                
+                                <!-- /.timeline-label -->
+                                <!-- timeline item -->
+                                
+                                <!-- END timeline item -->
+                                <li>
+                                  <i class="fa fa-clock-o bg-gray"></i>
+                                </li>
+                              </ul>
+                            </div>
+                            <!-- /.tab-pane -->
+              
                           
+                            <!-- /.tab-pane -->
+                          </div>
+                         
       
         <!-- ./col -->
        <!--Commented by ZAID <div class="col-lg-3 col-xs-6">
@@ -1070,15 +1080,16 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper ->
+  <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <div class="pull-right hidden-xs">
-      <b>Version</b> 2.4.0
-    </div>
-    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
-    reserved.
-  </footer>
-    Comment End by ZAID-->
+      <div class="pull-right hidden-xs">
+        <b>Version</b> 2.4.0
+      </div>
+      <strong>&copy;<a href="https://adminlte.io"></a>.</strong>
+    </footer>
+
+
+<!--    Comment End by ZAID-->
   
 
   <!-- Control Sidebar -->
@@ -1318,6 +1329,9 @@
 <!-- Firebase -->
 <script src="home.js"></script>
 
+<script src="timeline_testing.js"></script>
+
+
 
 <!--Code by Zaid-->
 <!--<script>
@@ -1345,5 +1359,7 @@
 
      
   </script>
+
+
 </body>
 </html>
