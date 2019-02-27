@@ -25,25 +25,6 @@ function main() {
         time : time
       });
 
-
-        $('.timeline').prepend("<li>"+
-        "<i class='fa fa-comments bg-yellow'></i>"+
-
-        "<div class='timeline-item'>"+
-          "<span class='time'><i class='fa fa-clock-o'></i> "+time+"</span>"+
-
-          "<h3 class='timeline-header'><a href='#'>"+fullname[0].innerHTML+"</a> sent a message</h3>"+
-
-          "<div class='timeline-body'>"+
-            inputmessage.value+
-            "</div>"+
-
-          "<div class='timeline-footer'>"+
-            "<a class='btn btn-primary btn-xs'>Read more</a>&nbsp"+
-            "<a class='btn btn-danger btn-xs delete'>Delete</a>"+
-          "</div>"+
-        "</div>"+
-      "</li>");
     }
 
     inputmessage.innerHTML="";
