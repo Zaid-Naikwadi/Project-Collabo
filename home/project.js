@@ -24,10 +24,10 @@ function main()
       var txtproject_title = document.getElementById('projectTitle');
       var txtproject_description = document.getElementById('projectDescription');
       var txtproject_tags = document.getElementById('projecttags');
+      var txthiddenProjectKey = document.getElementById('hiddenProjectKey');
 
       var ptitle = "";
       var pdescription = "";
-      var projectKey = "";
       var tags="";
 
       var ref = firebase.database().ref('Projects/');
@@ -92,6 +92,7 @@ function main()
 
     }
 
+  txthiddenProjectKey.innerHTML=projectToken;
    txtproject_title.innerHTML=ptitle;
    txtproject_description.innerHTML=pdescription;
    txtproject_tags.innerHTML=tags+"";

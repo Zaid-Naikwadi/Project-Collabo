@@ -11,12 +11,13 @@
     FbApp = FbApp.database();
     var userId = null;
     var user = null;
+    var fullname = null;
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser){
             userId = firebase.auth().currentUser.uid;
             user = firebaseUser;
             console.log("this userid: "+userId);
-            var fullname = document.getElementsByClassName("fullname");
+            fullname = document.getElementsByClassName("fullname");
             firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
             var username = (snapshot.val() && snapshot.val().username) || 'Anonymous';
             // ..
