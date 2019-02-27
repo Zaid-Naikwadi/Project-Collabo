@@ -69,7 +69,7 @@
             // ..
             console.log("datetoken: "+datetoken);
             var logintime=snapshot.val().logintime;
-            alert(logindate);
+            //alert(logindate);
             var now=new Date();
             var dd = now.getDate();
                 var mm = now.getMonth() + 1; //January is 0!

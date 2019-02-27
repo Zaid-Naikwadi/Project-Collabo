@@ -132,7 +132,7 @@ var config = {
       var tags = document.getElementsByClassName("tag");
       writeUserData(userid,username,userEmail,collegeName.value,address.value,mobileNo.value,tags);
       addDatatoFirebase(userid);
-      alert(userid + "   "+ userEmail);
+      //alert(userid + "   "+ userEmail);
       
   });
 
@@ -273,7 +273,7 @@ function writeData(userId)
        console.log("datekay: "+datekey);
        console.log("data logintime: "+data);
        //alert(datekey);
-       alert("returning back");
+      // alert("returning back");
        /*var loggg;
        firebase.database().ref('/users/' + userId).once('value').then(function(snapshot) {
         console.log("Getting data from firebase database");
