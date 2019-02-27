@@ -1303,31 +1303,5 @@
 <script src="home.js"></script>
 
 
-<!--Code by Zaid-->
-<!--<script>
-  var config = {
-      apiKey: "AIzaSyBBZrXTL-mFOHw9EzrQarO-Nrkl082C8Lk",
-      authDomain: "project-collabo.firebaseapp.com",
-      databaseURL: "https://project-collabo.firebaseio.com",
-      projectId: "project-collabo",
-      storageBucket: "project-collabo.appspot.com",
-      messagingSenderId: "757376790492"
-    };
-    firebase.initializeApp(config);
-  </script>-->
-
-  <script>
-
-      firebase.auth().onAuthStateChanged(firebaseUser => {
-          if(firebaseUser){
-              alert("email: "+firebaseUser.email+" uid: "+firebaseUser.uid);
-          }
-          else{
-              console.log("not logged in");
-          }
-      });
-
-     
-  </script>
 </body>
 </html>
