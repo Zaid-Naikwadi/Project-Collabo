@@ -63,7 +63,7 @@ var config = {
     var password = txtPassword1.value;
 
     if (email.length < 4) {
-      alert('Please enter an email address.');
+      ('Please enter an email address.');
       return;
     }
     if (password.length < 4) {
