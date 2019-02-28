@@ -29,6 +29,7 @@ function main()
       var ptitle = "";
       var pdescription = "";
       var tags="";
+      var uid= "";
 
       var ref = firebase.database().ref('Projects/');
       ref.on('value',function(snapshot3){
@@ -38,8 +39,8 @@ function main()
 
       for(var i=0;i<keys.length;i++)
       {
-                userId = keys[i];
-                var ref2 = firebase.database().ref('Projects/'+userId+"/");
+                id = keys[i];
+                var ref2 = firebase.database().ref('Projects/'+id+"/");
 
                 ref2.on('value',function(snapshot){
                     
@@ -54,6 +55,7 @@ function main()
                     console.log("projectkey : "+projectKey);
                     if(projectKey==projectToken)
                       {
+                        console.log("projectkeyyy : "+projectKey);
                         ptitle = temp2[projectKey].title;
                         pdescription = temp2[projectKey].description;
                         tags="";
@@ -61,7 +63,7 @@ function main()
 
 
                         var projectKey = keys2[j];
-                        var ref3 =firebase.database().ref('Projects/'+userId+'/'+projectKey+"/tags/");
+                        var ref3 =firebase.database().ref('Projects/'+id+'/'+projectKey+"/tags/");
                         ref3.on('value',function(snapshot2){
 
                       
@@ -79,9 +81,7 @@ function main()
                         }
 
                       });
-
-
-                        
+                      uid = id;
                         break;
                       }
                       
@@ -98,5 +98,21 @@ function main()
    txtproject_tags.innerHTML=tags+"";
    
   });
+
+    //Collaboration button by kamlesh silag
+        //////////////////////////////////////
+
+        var collaboButton = document.getElementById("collab");
+
+        collaboButton.addEventListener('click',e=>
+        {
+            alert('clicked collb'+"id: "+uid+"userid:: "+userId);
+            var projectKey_ = document.getElementById('hiddenProjectKey').innerHTML;
+            var refcollab = firebase.database().ref("users/"+uid+"/requests/"+projectKey_+"/");
+            refcollab.push({
+              userid : userId
+            });
+
+        });
 
 }
