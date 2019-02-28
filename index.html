@@ -1,5 +1,9 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
 <head>
+      <style>
+    #loader{ position: fixed;left: 0px;top: 0px;width:100%;height:100%;z-index: 9999;background: url(pageLoader.gif) 50% 50% no-repeat rgb(249,249,249);}         
+    
+    </style>
     <meta name="theme-color" content="#323754">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="description" content="  HackerEarth is a global hub of 2M+ developers. We also help companies fast-track their growth through our best-in-class technical recruitment software and innovation management platform." >
@@ -23,7 +27,7 @@
     <script src="https://cdn.rawgit.com/mdehoog/Semantic-UI/6e6d051d47b598ebab05857545f242caf2b4b48c/dist/semantic.min.js"></script>
       <meta charset="utf-8">
 
-
+    
 
 
     <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
@@ -58,7 +62,7 @@
     
             
     
-    
+            
     
             
     
@@ -80,10 +84,10 @@
         </head>
 
         
-<body>
+<body onload="myfun()">
     
     <!-- This is the center page which has a fixed width of 1100px -->
-    
+    <div id="loader"></div>  
     <div class="responsive-page homepage">
         <section class="first-section">
             <header class="navbar-header header-top">
@@ -113,6 +117,7 @@
                         <!--Login code added by KAMLESH SILAG on 21/02/2019 -->
                         <li>
                             <a class="button" id="test">Login </a>
+                            <div class="loader"></div>
                               <div class="ui modal test">
                                 <div class="ui middle aligned center aligned grid">
                                  <div class="column">
@@ -447,7 +452,13 @@
   </script>
 
 
-
+    <script>
+        var pre=document.getElementById('loader')
+        function myfun()
+        {
+            pre.style.display='none'
+        }
+    </script>
 
   <!-- Code added for skills javascript by kamlesh silag on 23/02/2019-->
   <script>
