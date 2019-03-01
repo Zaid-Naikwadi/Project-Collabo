@@ -44,34 +44,12 @@
 
     signoutBtn = document.getElementById("signout");
     signoutBtn.addEventListener('click',e => {
-        addLogoutTime(datetoken);  //Add logout time and then signout
-          });
-          var currenLocation=document.URL;
-            // Block of code to try
-            try{
-            if(currenLocation.includes("home.html")){
-          var datetoken= currenLocation.split('?-')[1];
-           datetoken=datetoken.split('#')[0];
-           console.log("URL="+currenLocation);
-           console.log("Token="+datetoken);
-          }else{
-            console.log("this is not home");
-          }
-        }catch(err) {
-            //Block of code to handle errors
-            console.log("this url cannot be split"+err);
-          }
+        addLogoutTime();  //Add logout time and then signout
+    });
 
 
-
-    function addLogoutTime(datetoken)
+    function addLogoutTime()
     {
-          firebase.database().ref('users/'+userId+'/dates/-'+datetoken).once('value').then(function(snapshot) {
-            var logindate = (snapshot.val() && snapshot.val().logindate) || 'Anonymous';
-            // ..
-            console.log("datetoken: "+datetoken);
-            var logintime=snapshot.val().logintime;
-            //alert(logindate);
             var now=new Date();
             var dd = now.getDate();
                 var mm = now.getMonth() + 1; //January is 0!
@@ -86,26 +64,19 @@
                 }
       
               var  today = dd + '/' + mm + '/' + yyyy;
-            var time=now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
-
-            console.log("userID from add logout time: "+userId);
-            console.log("data from add logout time:"+snapshot.val().logintime);
-            var database=firebase.database();
-              var ref=database.ref('users/'+userId+'/dates/-'+datetoken);
+              var time=now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
+              var database=firebase.database();
+              var ref=database.ref('users/'+userId+'/dates');
               var data=
               {
-                logindate:logindate,
-                logintime:logintime,
                 logouttime:time,
                 logoutdate:today
               };
-              ref.update(data);
-            
-            }).then(function(){
-              firebase.auth().signOut().then(function() {
-                //   // Sign-out successful.
-                window.location = '../index.html';});
-            });
+              ref.update(data).then(function(){
+                    firebase.auth().signOut().then(function() {
+                      //   // Sign-out successful.
+                      window.location = '../index.html';});;
+             });
       }
 
 

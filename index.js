@@ -255,23 +255,67 @@ function writeData(userId)
         console.log(today);
         var time=now.getHours()+":"+now.getMinutes()+":"+now.getSeconds();
         console.log(time);
-
-       var database=firebase.database();
-       var ref=database.ref('users/'+userId+'/dates');
-       var data=
-       {
-         logindate:today,
-         logintime:time,
-         logouttime:"00:00:00"
-       };
-       var datekey=ref.push().key;
+        var database=firebase.database();
+        if(flag==false)
+        {
+          console.log("New user");
+         
+          var data=
+          {
+            logindate:today,
+            logintime:time,
+            logouttime:"00:00:00",
+            logoutdate:""
+          };
+          database.ref('users/'+userId+'/dates').update(data).then(function(){
+            window.location = "home/home.html";
+          });;
+        }
        
-       database.ref('users/'+userId+'/dates/'+datekey).set(data).then(function(){
-         window.location = "home/home.html?"+datekey;
-       });
+        else
+        {
+          console.log("user is already registered");
+          firebase.database().ref('/users/' + userId+'/dates').once('value').then(function(snapshot) {
+            console.log("Getting data from firebase database");
+            intime=snapshot.val().logintime;
+            outtime=snapshot.val().logouttime;
+            indate=snapshot.val().logindate ;
+            outdate=snapshot.val().logoutdate;
+            //console.log("intime="+intime);
+            var database=firebase.database();
+            var ref=database.ref('users/'+userId+'/dates');
+            var data=
+            {
+              logindate:indate,
+              logintime:intime,
+              logouttime:outtime,
+              logoutdate:outdate
+            };
+            ref.push(data);
+            var data=
+          {
+            logindate:today,
+            logintime:time,
+            logouttime:"00:00:00",
+            logoutdate:""
+          };
+          database.ref('users/'+userId+'/dates').update(data).then(function(){
+            window.location = "home/home.html";
+          });;
+          });
+          
+          console.log("else over");
+
+        }
+      //  var datekey=ref.push().key;
+      //  database.ref('users/'+userId+'/dates/'+datekey).set(data);
+
+      
+       
+       
        //var k=ref.push().key();
-       console.log("datekay: "+datekey);
-       console.log("data logintime: "+data);
+      //  console.log("datekay: "+datekey);
+      //  console.log("data logintime: "+data);
        //alert(datekey);
       // alert("returning back");
        /*var loggg;
