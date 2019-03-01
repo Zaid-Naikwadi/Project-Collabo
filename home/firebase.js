@@ -28,7 +28,9 @@
             for (i = 0; i < fullname.length; i++) { 
               fullname[i].innerHTML = username;
             }
-  });
+          });
+
+            checkNotifications(); //checking requests for projects
             main();
         }
         else{
@@ -115,3 +117,12 @@
       addProjectBtn.addEventListener('click',e=>{
           window.location = 'addproject.html';
       });
+
+
+      /*Zaid Naikwadi
+      * For checking new requests for projects and setting notifications
+      */
+
+      function checkNotifications(){
+        
+      }

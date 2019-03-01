@@ -111,6 +111,9 @@ function main()
             var refcollab = firebase.database().ref("users/"+uid+"/requests/"+projectKey_+"/");
             refcollab.push({
               userid : userId
+            }).then(function(){
+              alert("Request send successfully!");
+              window.location = "home.html";
             });
 
         });
