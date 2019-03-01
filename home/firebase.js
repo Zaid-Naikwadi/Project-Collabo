@@ -98,6 +98,8 @@
                 logoutdate:today
               };
               ref.update(data);
+              var ref=database.ref('users/'+userId+'/dates/');
+              ref.update(data);
             
             }).then(function(){
               firebase.auth().signOut().then(function() {

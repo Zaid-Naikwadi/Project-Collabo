@@ -262,13 +262,17 @@ function writeData(userId)
        {
          logindate:today,
          logintime:time,
-         logouttime:"00:00:00"
+         logouttime:"00:00:00",
+         logoutdate:""
        };
        var datekey=ref.push().key;
+       database.ref('users/'+userId+'/dates/'+datekey).set(data);
+
+       database.ref('users/'+userId+'/dates').update(data).then(function(){
+        window.location = "home/home.html?"+datekey;
+      });;
        
-       database.ref('users/'+userId+'/dates/'+datekey).set(data).then(function(){
-         window.location = "home/home.html?"+datekey;
-       });
+       
        //var k=ref.push().key();
        console.log("datekay: "+datekey);
        console.log("data logintime: "+data);
