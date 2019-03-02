@@ -12,6 +12,7 @@
     var userId = null;
     var user = null;
     var fullname = null;
+    var projectNamee = ""; //projectName for displaying for notification
     firebase.auth().onAuthStateChanged(firebaseUser => {
         if(firebaseUser){
             userId = firebase.auth().currentUser.uid;
@@ -30,8 +31,12 @@
             }
           });
 
+            
             checkNotifications(); //checking requests for projects
-            main();
+            //demo(); //for sleep
+            
+            
+            console.log("hey ppnammee: "+projectNamee);
         }
         else{
             console.log("Not logged in ");
@@ -39,6 +44,16 @@
 
     });
 
+    function sleep(ms) {
+      return new Promise(resolve => setTimeout(resolve, ms));
+    }
+    
+    async function demo() {
+      console.log('Taking a break...');
+      await sleep(800000);
+      console.log('Two seconds later');
+    }
+    
 
     
 
@@ -95,5 +110,108 @@
       */
 
       function checkNotifications(){
+        var numberOfNotifications = 0;
         
-      }
+        firebase.database().ref('/users/' + userId+'/requests').on('value',function(snapshot) {
+          if(snapshot.exists()){
+          var temp = snapshot.val();
+          var keys = Object.keys(temp);
+
+          for(var i=0;i<keys.length;i++){
+            projKey = keys[i];
+            console.log("projKey: "+projKey);
+
+            firebase.database().ref('/users/'+userId+'/requests/'+projKey).on('value',function(snapshot2){
+              var temp2 = snapshot2.val();
+              var keys2  = Object.keys(temp2);
+
+              for(var j=0;j<keys2.length;j++){
+                numberOfNotifications += 1;
+                requestKey = keys2[j];
+                getProjectName(projKey);
+                firebase.database().ref('/users/'+userId+'/requests/'+projKey+"/"+requestKey).on('value',function(snapshot3){
+                  var userIdOfRequestedUser = snapshot3.val().userid;
+                  console.log("userIdOfRequestedUser: "+userIdOfRequestedUser);
+                });
+                console.log("numberOfNotifications: "+numberOfNotifications);
+                console.log("project Namee: "+projectNamee);
+              }
+            });
+          }
+        }else{
+          console.log("no notifications");
+          main();
+        }
+
+      });
+   
+     
+    }
+
+    $(document).ready(function(){
+  
+      $(document).on("click", ".singleNotification" , function() {
+  
+        var projKey = $(this).attr('id');
+        console.log("key is "+projKey);
+       // $(".test").modal('show');
+       // $()
+        //window.location = "project.html?"+pkey;
+      });
+
+      
+    });
+
+
+   function getProjectName(projKey){
+      var usersIds;
+      
+      /*firebase.database().ref("/Projects").on('value',function(snapshot){
+        var temp = snapshot.val();
+        var keys  = Object.keys(temp);
+        console.log("oh snapshot: "+snapshot.val());
+        for(var i=0;i<keys.length;i++){
+          usersIds = keys[i];
+          console.log("usersids+ "+usersIds);
+          firebase.database().ref("/Projects/"+usersIds+"/"+projKey).once('value').then(function(snapshot2){
+            try{
+              console.log("in try: proKey: "+projKey);
+            projectName = snapshot2.val().title;
+            console.log("The prj name is: "+projectName);
+            }
+            catch(err){
+              console.log("Still not found: "+err);
+            }
+          });
+
+        }
+      });*/
+      firebase.database().ref().child("Projects").once("value", function (snapshot) {
+        snapshot.forEach(function(childSnapshot) {  
+         // console.log("chavi: "+childSnapshot.key);
+          childSnapshot.forEach(function(childChildSnapshot){
+            if(childChildSnapshot.key == projKey){
+            var temp = childChildSnapshot.val();
+            var keys = Object.keys(temp);
+            console.log("TITLE: "+childChildSnapshot.val().title);
+            var projectName = childChildSnapshot.val().title;
+            console.log("pname: "+projectName);
+            projectNamee = projectName;
+            console.log("pnamee: "+projectNamee);
+
+            //append in notifications
+            $("#requestNotifications").append("<li>"+
+            "<a href='#' id="+projKey+" class='singleNotification'>"+
+              "<i class='fa fa-users text-aqua'></i>You have new requests for project: <br>"+projectNamee+""+
+            "</a>"+
+          "</li>");
+            main();
+            }
+          });
+        });
+      });
+      
+      
+
+    }
+

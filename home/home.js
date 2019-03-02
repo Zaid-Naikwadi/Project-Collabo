@@ -1,6 +1,7 @@
 function main(){
   
   all_projects(); //displaying all projects to user on main page
+  console.log("Project Name from home.js: "+projectNamee);
 
     //By kamlesh on 26/02/2019
     $(document).ready(function(){
@@ -77,7 +78,7 @@ function main(){
                       "<!-- small box -->"+
                       "<div class='small-box bg-aqua'>"+
                         "<div class='inner'>"+
-                          "<h3>"+title+" "+k+"</h3>"+
+                          "<h3>"+title+"</h3>"+
                           "<p><b>Description : </b>"+description+"</p>"+
                           "<p><b>Tags : </b>"+tags+"</p>"+
                         "</div>"+
