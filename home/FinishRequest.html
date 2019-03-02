@@ -547,58 +547,11 @@
       <!-- Small boxes (Stat box) -->
         <div class="rowtimeline">
                 <div class="col-md-12">
-                    <div class="box box-info">
-                        <div class="box-header">
-                          <h3 class="box-title">BROADCAST MESSAGE
-                            <small>Send Messages and Codes.</small>
-                          </h3>
-                          <!-- tools box -->
-                          <div class="pull-right box-tools">
-
-                            <button type="button" class="btn btn-info btn-sm" style="float: right;" data-widget="collapse" data-toggle="tooltip"
-                                    title="Collapse">
-                              <i class="fa fa-minus"></i></button>
-
-                            <button type="button" class="btn btn-info btn-sm" style="float: right;margin-right: 10px"  data-widget="remove" data-toggle="tooltip"
-                                    title="Remove">
-                              <i class="fa fa-times"></i></button>
-
-                              <button class="btn btn-info btn-sm" id="btnFinish" style="float: right; margin-right: 10px">FINISH</button><br>
-                          </div>
-                          <!-- /. tools -->
-                        </div>
-                        <!-- /.box-header -->
-                        <div class="box-body pad">
-                          <!--form--> 
-                                <textarea id="editor1" name="editor1" rows="10" cols="80">
-                                </textarea><br>
-
-                                <button id="submitMessage" class="btn btn-info btn-sm">SEND</button>
-
-                                <button class="btn btn-info btn-sm" id="uploadButton" style="float:right ">Upload</button>
-                                <label class="upload-group btn-info btn-sm" style="float:right ; margin-right: 20px">
-                                    <input type="file" id="file">
-                                </label>
-
-                                <label style="float:right ; margin-right: 20px">OR
-                                    <small>Upload Images : </small>
-                                </label>
-
-                                
-  
-                                  
-                          <!--/form-->
-                        </div>
-
-                        
-
-                        
-                      </div>
-                      
-
-                            <!-- /.tab-pane -->
+                      <!-- /.tab-pane -->
                             <div class="tab-pane" id="timeline">
                               <!-- The timeline -->
+                              <button id="accept" style="margin-left: 300px; " class="btn btn-info ">ACCEPT</button>
+                              <button id="reject" style="margin-left: 200px" class="btn btn-info ">REJECT</button>
                               <ul class="timeline timeline-inverse">
                                 <!-- timeline time label -->
 
@@ -1321,26 +1274,7 @@
 
 <!-- Firebase -->
 <script src="firebase.js"></script>
-<script src="timeline.js"></script>
-
-<script src="bower_components/ckeditor/ckeditor.js"></script>
-<script>
-$(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1',{
-                    filebrowserBrowseUrl :'js/ckeditor/filemanager/browser/default/browser.html?Connector=http://www.mixedwaves.com/filemanager_in_ckeditor/js/ckeditor/filemanager/connectors/php/connector.php',
-                    filebrowserImageBrowseUrl : 'js/ckeditor/filemanager/browser/default/browser.html?Type=Image&amp;Connector=http://www.mixedwaves.com/filemanager_in_ckeditor/js/ckeditor/filemanager/connectors/php/connector.php',
-                    filebrowserFlashBrowseUrl :'js/ckeditor/filemanager/browser/default/browser.html?Type=Flash&amp;Connector=http://www.mixedwaves.com/filemanager_in_ckeditor/js/ckeditor/filemanager/connectors/php/connector.php'}
-             );
-
-    //timer = setInterval(function(){
-      var editorText = CKEDITOR.instances.editor1.getData();
-      console.log("editor ki value :"+editorText);
-    //},100);
-
-  })
-</script>
+<script src="FinishRequest.js"></script>
 
 
 
