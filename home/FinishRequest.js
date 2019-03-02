@@ -1,5 +1,7 @@
 function main() {
 
+
+  //to show timeline
     try {
         // Block of code to try
               var currenLocation=document.URL;
@@ -14,7 +16,6 @@ function main() {
        }
 
        var selectedFile;
-        
 
        var reftimeline = firebase.database().ref('timeline/-'+projectToken+"/");
        reftimeline.on('value',function(snapshottimeline){
@@ -81,10 +82,31 @@ function main() {
                        "</div>"+
                      "</li>");
 
-                    img_set_in_timeline();
+                    //img_set_in_timeline();
            }
-
-
-    }
+}
 }); 
+
+
+        var acceptBtn = document.getElementById("accept");
+        acceptBtn.addEventListener("click",function(event){
+            window.location="Accept_Finish.html?"+projectToken;
+        });
+
+
+        //for users added to projects
+        var refusers = firebase.database().ref("collaborate/-"+projectToken+"/");
+        refusers.on('value',function(snapshot){
+          var temp = snapshot.val();
+          var keys = Object.keys(temp);
+
+          for(var i=0;i<keys.length;i++)
+          {
+            var k = keys[i];
+            var username = temp[k].username;
+
+            console.log("usernamesss :"+username);
+          }
+        });
+       
 }
