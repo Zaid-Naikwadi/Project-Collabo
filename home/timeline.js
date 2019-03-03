@@ -9,17 +9,6 @@ function main() {
     var facultyID = "demofaculty";
     var ref = firebase.database().ref("timeline/"+projectKey+"/");
 
-    function img_set_in_timeline()
-      {
-        $(document).on("click", ".demoimage" , function() {
-        var url_jquery = $(this).attr('value');
-        //$(this).attr("src",url_jquery);
-        console.log("url jquery : "+url_jquery);
-        $(this).attr("src",url_jquery);
-        console.log($(this).attr("src")+" src now ");
-        
-        });
-      }
 
   //var projectTitleTimeline = document.getElementById("projectTitleTimeline");
   //to be done LATER ON
@@ -112,6 +101,8 @@ function main() {
 
                       console.log("message url : "+user_message);
 
+
+
                       $('.timeline').prepend("<li>"+
                         "<i class='fa fa-camera bg-purple'></i>"+
 
@@ -119,11 +110,8 @@ function main() {
                           "<span class='time'><i class='fa fa-bell-o'></i> "+user_time+"</span>"+
 
                           "<h3 class='timeline-header'><a href='#'>"+user_name+"</a> sent an image</h3>"+
-
-                          "<div class='timeline-body'><pre>"+user_message+
-                            "</pre></div>"+
-                          "<img id='demoimage"+ timeline + "' value="+user_message +  "' class='demoimage'  width='400px' height='400px'>"+
-                          "<div class='timeline-footer'>"+
+                          "<br><img style='margin-left: 50px;  id='demoimage"+ timeline + "' value='"+user_message +  "' src='"+user_message+"' class='demoimage'  width='400px' height='400px'>"+
+                          "<br><div class='timeline-footer'>"+
                             "<a class='btn btn-primary btn-xs'>Read more</a>&nbsp"+
                             "<a class='btn btn-danger btn-xs delete'>Delete</a>"+
                           "</div>"+
@@ -131,8 +119,8 @@ function main() {
                       "</li>");
 
                       
-                      //document.getElementById('demoimage').src = user_message;
-                      img_set_in_timeline();
+                      
+                      
             }
 
           }
@@ -201,4 +189,36 @@ function main() {
     buttonFinish.addEventListener("click",function(event){
       window.location = "FinishRequest.html?"+projectKey;
     });
+
+    firebase.database().ref("collaborate/"+projectKey+"/").push({
+      username : "demo silag",
+      userid : "CIXGOn3ApfNdpVRJ1DWYg8wSpNE2"
+    });
+
+    var buttonLeave = document.getElementById('btnLeave');
+    buttonLeave.addEventListener("click",function(event){
+      
+        var userid = userId;
+        var reference = firebase.database().ref("collaborate/"+projectKey+"/");
+        reference.on("value",function(snapshotref){
+          var tempref = snapshotref.val();
+          var keysref = Object.keys(tempref);
+
+          for(var x = 0 ; x< keysref.length; x++)
+          {
+            id = keysref[x];
+            var username_ = tempref[id].username;
+
+            if(username_==fullname[0].innerHTML)
+              break;
+          }
+
+        });
+
+        
+        reference.child(id+"/").remove();
+        window.location="home.html";
+    });
+
+    
 }

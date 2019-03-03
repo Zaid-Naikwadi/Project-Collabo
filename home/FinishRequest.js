@@ -65,24 +65,20 @@ function main() {
                      console.log("message url : "+user_message);
 
                      $('.timeline').prepend("<li>"+
-                       "<i class='fa fa-camera bg-purple'></i>"+
+                     "<i class='fa fa-camera bg-purple'></i>"+
 
-                       "<div class='timeline-item'>"+
-                         "<span class='time'><i class='fa fa-bell-o'></i> "+user_time+"</span>"+
+                     "<div class='timeline-item'>"+
+                       "<span class='time'><i class='fa fa-bell-o'></i> "+user_time+"</span>"+
 
-                         "<h3 class='timeline-header'><a href='#'>"+user_name+"</a> sent an image</h3>"+
-
-                         "<div class='timeline-body'><pre>"+user_message+
-                           "</pre></div>"+
-                         "<img id='demoimage"+ timeline + "' value="+user_message +  "' class='demoimage'  width='400px' height='400px'>"+
-                         "<div class='timeline-footer'>"+
-                           "<a class='btn btn-primary btn-xs'>Read more</a>&nbsp"+
-                           "<a class='btn btn-danger btn-xs delete'>Delete</a>"+
-                         "</div>"+
+                       "<h3 class='timeline-header'><a href='#'>"+user_name+"</a> sent an image</h3>"+
+                       "<br><img style='margin-left: 50px;  id='demoimage"+ timeline + "' value='"+user_message +  "' src='"+user_message+"' class='demoimage'  width='400px' height='400px'>"+
+                       "<br><div class='timeline-footer'>"+
+                         "<a class='btn btn-primary btn-xs'>Read more</a>&nbsp"+
+                         "<a class='btn btn-danger btn-xs delete'>Delete</a>"+
                        "</div>"+
-                     "</li>");
+                     "</div>"+
+                   "</li>");
 
-                    //img_set_in_timeline();
            }
 }
 }); 
@@ -90,23 +86,10 @@ function main() {
 
         var acceptBtn = document.getElementById("accept");
         acceptBtn.addEventListener("click",function(event){
-            window.location="Accept_Finish.html?"+projectToken;
+            window.location="Accept_Finish.html?-"+projectToken;
         });
 
 
-        //for users added to projects
-        var refusers = firebase.database().ref("collaborate/-"+projectToken+"/");
-        refusers.on('value',function(snapshot){
-          var temp = snapshot.val();
-          var keys = Object.keys(temp);
-
-          for(var i=0;i<keys.length;i++)
-          {
-            var k = keys[i];
-            var username = temp[k].username;
-
-            console.log("usernamesss :"+username);
-          }
-        });
+        
        
 }

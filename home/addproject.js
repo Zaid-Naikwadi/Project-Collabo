@@ -6,6 +6,7 @@
 function main(){
                                var title = document.getElementById("projectTitle");
                                var description = document.getElementById("projectDescription");
+                               var branch = document.getElementById("branch");
                                var submitBtn = document.getElementById("submitBtn");
                                
                                
@@ -13,19 +14,20 @@ function main(){
                                submitBtn.addEventListener("click", e =>{
                                    console.log("in submit");
                                    var tags = document.getElementsByClassName("tag");
-                                   writeAddProjectData(title.value,description.value,tags);
+                                   writeAddProjectData(title.value,description.value,tags,branch.value);
                                });
                          
                          
 }
 
-function writeAddProjectData(title,description,tags)
+function writeAddProjectData(title,description,tags,branch)
 {
                          
                                      projectKey = firebase.database().ref('Projects/'+userId+"/").push({
                                        title: title,
                                        description: description,
-                                       userId : userId
+                                       userId : userId,
+                                       branch : branch
                                      }).key;
                          
                                      var Alltags = {};
