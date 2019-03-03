@@ -31,16 +31,6 @@
   <!-- bootstrap wysihtml5 - text editor -->
   <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
 
-  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
-
-  <link rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
-
-         <!-- bootstrap wysihtml5 - text editor -->
-  <link rel="stylesheet" href="plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
-
-
-  <link rel="stylesheet" href="demo.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -49,15 +39,12 @@
   <![endif]-->
 
   <!-- Google Font -->
-  
-
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body class="hold-transition skin-blue sidebar-mini">
 <div class="wrapper">
 
   <header class="main-header">
-
-
     <!-- Logo -->
     <a href="index2.html" class="logo">
       <!-- mini logo for sidebar mini 50x50 pixels -->
@@ -379,7 +366,7 @@
         </li>
         <!--Added by ZAID-->
         <li>
-          <a id="addProjectBtn" href="addproject.html">
+          <a id="addProjectBtn" href="#">
             <i class="fa fa-th"></i> <span>Add new project</span>
             <span class="pull-right-container">
               <small class="label pull-right bg-green"></small>
@@ -388,10 +375,18 @@
         </li>
         <!--Add end Zaid-->
         <li>
-          <a href="timeline.html">
-            <i class="fa fa-th"></i> <span>Timeline</span>
+            <a href="timeline.html">
+              <i class="fa fa-th"></i> <span>Timeline</span>
+              <span class="pull-right-container">
+                <small class="label pull-right bg-green"></small>
+              </span>
+            </a>
+          </li>
+        <li>
+          <a href="pages/widgets.html">
+            <i class="fa fa-th"></i> <span>Widgets</span>
             <span class="pull-right-container">
-              <small class="label pull-right bg-green"></small>
+              <small class="label pull-right bg-green">new</small>
             </span>
           </a>
         </li>
@@ -537,42 +532,52 @@
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-      <h1 id="projectTitleTimeline">Project Checking by Faculty :
-      </h1>
+      <h1>
+        Dashboard
         <small>Control panel</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Timeline</li>
+        <li class="active">Dashboard</li>
       </ol>
     </section>
 
     <!-- Main content -->
     <section class="content">
-
       <!-- Small boxes (Stat box) -->
-        <div class="rowtimeline">
-            <button id="accept" style="margin-left: 300px; " class="btn btn-info ">ACCEPT</button>
-            <button id="reject" style="margin-left: 200px ; background-color: red" class="btn btn-info ">REJECT</button><br><br>
-                <div class="col-md-12">
-                      <!-- /.tab-pane -->
-                            <div class="tab-pane" id="timeline">
-                              <!-- The timeline -->
-                              
-                              <ul class="timeline timeline-inverse">
-                                <!-- timeline time label -->
-
-                                <!-- END timeline item -->
-                                <li>
-                                  <i class="fa fa-clock-o bg-gray"></i>
-                                </li>
-                              </ul>
-                            </div>
-                            <!-- /.tab-pane -->
-
-
-                            <!-- /.tab-pane -->
-                          </div>
+      <div class="rowmyprojects">
+        
+        <!--commented by kamlesh silag on 25/02/2019-->
+         <!--                                                     <div class="col-lg-6 col-xs-7">
+                                                            <!-- small box 
+                                                             <div class="small-box bg-aqua">
+                                                                  <div class="inner">
+                                                                    <h3>Clubbing College Projects</h3>
+                                                                    <p>description :</p><p id="description"></p>
+                                                                    <p>Tags : </p><p id="tags"><p id="tags"> </p>
+                                                                  </div>
+                                                                  <div class="icon">
+                                                                    <i class="ion ion-bag"></i>
+                                                                  </div>
+                                                                  <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                                                </div>
+                                                              </div>
+                                                              <div class="col-lg-6 col-xs-7">
+                                                                  <!-- small box 
+                                                                  <div class="small-box bg-aqua">
+                                                                    <div class="inner">
+                                                                      <h3>Clubbing College Projects</h3>
+                                                        
+                                                                      <p>description :</p><p id="description"></p>
+                                                                      <p>Tags : </p><p id="tags"><p id="tags"> </p>
+                                                                    </div>
+                                                                    <div class="icon">
+                                                                      <i class="ion ion-bag"></i>
+                                                                    </div>
+                                                                    <a href="#" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                                                                  </div>
+                                                                </div>  
+                                                              -->
 
 
         <!-- ./col -->
@@ -1033,17 +1038,16 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
+  <!-- /.content-wrapper ->
   <footer class="main-footer">
-      <div class="pull-right hidden-xs">
-        <b>Version</b> 2.4.0
-      </div>
-      <strong>&copy;<a href="https://adminlte.io"></a>.</strong>
-    </footer>
-
-
-<!--    Comment End by ZAID-->
-
+    <div class="pull-right hidden-xs">
+      <b>Version</b> 2.4.0
+    </div>
+    <strong>Copyright &copy; 2014-2016 <a href="https://adminlte.io">Almsaeed Studio</a>.</strong> All rights
+    reserved.
+  </footer>
+    Comment End by ZAID-->
+  
 
   <!-- Control Sidebar -->
   <aside class="control-sidebar control-sidebar-dark">
@@ -1280,25 +1284,37 @@
 <script src="dist/js/demo.js"></script>
 
 <!-- Firebase -->
+<script src="myCollaborated.js"></script>
 <script src="firebase.js"></script>
-<script src="FinishRequest.js"></script>
 
-<script src='https://static.codepen.io/assets/common/stopExecutionOnTimeout-de7e2ef6bfefd24b79a3f68b414b87b8db5b08439cac3f1012092b2290c719cd.js'></script>
-<script>
-
-$(function(){
-  $("#test").click(function () {
-          $(".test").modal('show');
-        });
-
-        $("#test").click(function(){
-          $(".test2").modal('hide');
-        });
-
-  });
-</script>
+<!-- jquery-->
+<script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+ 
 
 
+<!--Code by Zaid-->
+<!--<script>
+  var config = {
+      apiKey: "AIzaSyBBZrXTL-mFOHw9EzrQarO-Nrkl082C8Lk",
+      authDomain: "project-collabo.firebaseapp.com",
+      databaseURL: "https://project-collabo.firebaseio.com",
+      projectId: "project-collabo",
+      storageBucket: "project-collabo.appspot.com",
+      messagingSenderId: "757376790492"
+    };
+    firebase.initializeApp(config);
+  </script>-->
 
+  <script>
+      firebase.auth().onAuthStateChanged(firebaseUser => {
+          if(firebaseUser){
+              alert("email: "+firebaseUser.email+" uid: "+firebaseUser.uid);
+          }
+          else{
+              console.log("not logged in");
+          }
+      });
+     
+  </script>
 </body>
 </html>

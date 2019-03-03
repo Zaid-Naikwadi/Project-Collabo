@@ -4,8 +4,21 @@
   /////////////////////////////////////////////////////
 
 function main() {
+  //Getting ProjectKey from url
+  try {
+    // Block of code to try
+          var currenLocation=document.URL;
+          var projectKey= currenLocation.split('?')[1];
+          var projectKey=projectKey.split('#')[0];
+          console.log("URL="+currenLocation);
+          console.log("Token="+projectkey);
+      }
+   catch(err) {
+     //Block of code to handle errors
+     console.log("cannot split this URL");
+   }
 
-    var projectKey = "-LZeub_mTXceGj4ZglaL";
+  console.log("pppppkkkk: "+projectKey);
     var facultyID = "demofaculty";
     var ref = firebase.database().ref("timeline/"+projectKey+"/");
 
@@ -14,7 +27,7 @@ function main() {
   //to be done LATER ON
 
   try{
-  var inputmessage = document.getElementById("comment");
+  //var inputmessage = document.getElementById("comment");
   var txtckeditor = document.getElementById("editor1");
   var sendMessage = document.getElementById("submitMessage");
 
@@ -58,6 +71,7 @@ function main() {
         reftimeline.on('value',function(snapshottimeline){
 
           var temptimeline = snapshottimeline.val();
+          if(snapshottimeline.val()){
           var keystimeline = Object.keys(temptimeline);
 
           for(var timeline = 0; timeline < keystimeline.length;timeline++)
@@ -124,6 +138,10 @@ function main() {
             }
 
           }
+        }
+        else{
+          console.log("Not any message");
+           }
         });
 
 
@@ -188,11 +206,6 @@ function main() {
     var buttonFinish = document.getElementById('btnFinish');
     buttonFinish.addEventListener("click",function(event){
       window.location = "FinishRequest.html?"+projectKey;
-    });
-
-    firebase.database().ref("collaborate/"+projectKey+"/").push({
-      username : "demo silag",
-      userid : "CIXGOn3ApfNdpVRJ1DWYg8wSpNE2"
     });
 
     var buttonLeave = document.getElementById('btnLeave');

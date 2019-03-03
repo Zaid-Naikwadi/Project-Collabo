@@ -7,6 +7,12 @@
 
   <script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
 
+  <!--for popup by Zaid Naikwadi-->
+  <link href="https://fonts.googleapis.com/css?family=Roboto:300,400" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+      <link rel="stylesheet" href="css/styleForPopup.css">
+
   <!--For notification popup-->
   <script src='https://static.codepen.io/assets/editor/live/console_runner-1df7d3399bdc1f40995a35209755dcfd8c7547da127f6469fd81e5fba982f6af.js'></script>
   <script src='https://static.codepen.io/assets/editor/live/css_reload-5619dc0905a68b2e6298901de54f73cefe4e079f65a75406858d92924b4938bf.js'>
@@ -366,8 +372,27 @@
           <ul class="treeview-menu">
             <li class="active"><a href="home.html"><i class="fa fa-circle-o"></i> Dashboard v1</a></li>
             <li><a href="myprojects.html"><i class="fa fa-circle-o"></i>My Projects</a></li>
+            <li><a href="myCollaborated.html"><i class="fa fa-circle-o"></i>My Collaborated Projects</a></li>
+
           </ul>
         </li>
+        <!--for dashboard by Zaid-->
+        <li class="treeview">
+          <a href="#" id="visualization">
+            <i class="fa fa-pie-chart"></i>
+            <span>Dashboard</span>
+            <!--<span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>-->
+          </a>
+          <!--<ul class="treeview-menu">
+            <li><a href="pages/charts/chartjs.html"><i class="fa fa-circle-o"></i> ChartJS</a></li>
+            <li><a href="pages/charts/morris.html"><i class="fa fa-circle-o"></i> Morris</a></li>
+            <li><a href="pages/charts/flot.html"><i class="fa fa-circle-o"></i> Flot</a></li>
+            <li><a href="pages/charts/inline.html"><i class="fa fa-circle-o"></i> Inline charts</a></li>
+          </ul>-->
+        </li>
+        <!--End dashboard-->
         <li class="treeview">
           <a href="#">
             <i class="fa fa-files-o"></i>
@@ -1340,7 +1365,7 @@
   //# sourceURL=pen.js
   </script>-->
 <!--For on notification click more details about project request-->
-<div class="ui modal test">
+<!--<div class="ui modal test">
   <div class="ui middle aligned center aligned grid">
    <div class="column">
      <h2 class="ui blue image header">
@@ -1373,7 +1398,44 @@
  </div>
 </div>
 </div>
-<!--/Notification request end-->
+<!--/Notification request end->
+-->
+
+
+<!--For popup by Zaid-->
+<!-- modal -->
+<!--<div class="modal-overlay">
+  <div class="modala">
+    
+    <a class="close-modal">
+      <svg viewBox="0 0 20 20">
+        <path fill="#000000" d="M15.898,4.045c-0.271-0.272-0.713-0.272-0.986,0l-4.71,4.711L5.493,4.045c-0.272-0.272-0.714-0.272-0.986,0s-0.272,0.714,0,0.986l4.709,4.711l-4.71,4.711c-0.272,0.271-0.272,0.713,0,0.986c0.136,0.136,0.314,0.203,0.492,0.203c0.179,0,0.357-0.067,0.493-0.203l4.711-4.711l4.71,4.711c0.137,0.136,0.314,0.203,0.494,0.203c0.178,0,0.355-0.067,0.492-0.203c0.273-0.273,0.273-0.715,0-0.986l-4.711-4.711l4.711-4.711C16.172,4.759,16.172,4.317,15.898,4.045z"></path>
+      </svg>
+    </a><!-- close modal ->
+
+    <div class="modal-content">
+      <h3>Some content here</h3>
+    </div><!-- content ->
+    
+  </div><!-- modal ->
+</div><!-- overlay ->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/3.0.0/jquery.min.js'></script>
+-->
+
+  <script>
+  //var elements = $('.modal-overlay, .modal');
+
+    //$('button').click(function(){
+     //   elements.addClass('active');
+    //});
+    
+    //$('.close-modal').click(function(){
+      //  elements.removeClass('active');
+    //});
+  </script>
+
+    <!--<script  src="popup.js"></script>->
+    -->
 
 </body>
 </html>

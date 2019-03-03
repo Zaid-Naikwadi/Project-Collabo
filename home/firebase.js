@@ -33,8 +33,6 @@
 
             
             checkNotifications(); //checking requests for projects
-            //demo(); //for sleep
-            
             
             console.log("hey ppnammee: "+projectNamee);
         }
@@ -44,7 +42,7 @@
 
     });
 
-    function sleep(ms) {
+    /*function sleep(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     }
     
@@ -52,8 +50,11 @@
       console.log('Taking a break...');
       await sleep(800000);
       console.log('Two seconds later');
-    }
+    }*/
     
+    document.getElementById('visualization').addEventListener('click',e=>{
+      window.location = 'DashBoard_Visual.html';
+    });
 
     
 
@@ -128,11 +129,14 @@
               for(var j=0;j<keys2.length;j++){
                 numberOfNotifications += 1;
                 requestKey = keys2[j];
-                getProjectName(projKey);
+                var userIdOfRequestedUser;
                 firebase.database().ref('/users/'+userId+'/requests/'+projKey+"/"+requestKey).on('value',function(snapshot3){
-                  var userIdOfRequestedUser = snapshot3.val().userid;
+                  userIdOfRequestedUser = snapshot3.val().userid;
                   console.log("userIdOfRequestedUser: "+userIdOfRequestedUser);
+                    
                 });
+                getProjectName(projKey,userIdOfRequestedUser);
+                
                 console.log("numberOfNotifications: "+numberOfNotifications);
                 console.log("project Namee: "+projectNamee);
               }
@@ -153,7 +157,11 @@
       $(document).on("click", ".singleNotification" , function() {
   
         var projKey = $(this).attr('id');
+        var userIdOfRequestedUser = $(this).attr('value');
+        console.log("useridofrequested after: "+userIdOfRequestedUser);
         console.log("key is "+projKey);
+        window.location = "notificationDetails.html?"+projKey+"?"+userIdOfRequestedUser;
+
        // $(".test").modal('show');
        // $()
         //window.location = "project.html?"+pkey;
@@ -163,7 +171,7 @@
     });
 
 
-   function getProjectName(projKey){
+   function getProjectName(projKey,userIdOfRequestedUser){
       var usersIds;
       
       /*firebase.database().ref("/Projects").on('value',function(snapshot){
@@ -201,7 +209,7 @@
 
             //append in notifications
             $("#requestNotifications").append("<li>"+
-            "<a href='#' id="+projKey+" class='singleNotification'>"+
+            "<a href='#' id="+projKey+" value="+userIdOfRequestedUser+" class='singleNotification'>"+
               "<i class='fa fa-users text-aqua'></i>You have new requests for project: <br>"+projectNamee+""+
             "</a>"+
           "</li>");
@@ -214,4 +222,10 @@
       
 
     }
+
+
+    /*For my collaborated projects 
+    * Zaid Naikwadi
+    * 3/03/19
+    */
 
