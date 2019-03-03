@@ -1,0 +1,71 @@
+<html>
+	<head>
+		<title>Dynamic Quiz Project</title>
+		<link type='text/css' rel='stylesheet' href='stylesheet.css'/>
+		<script src="https://www.gstatic.com/firebasejs/5.8.4/firebase.js"></script>
+		<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open Sans"/>
+	</head>
+	<body >
+		<div id='container'>
+			<div id='title'>
+				<h1> Daily Quiz</h1>
+			</div>
+   			<br/>
+  			<div id='quiz'></div>
+    		<div class='button' id='next'><a href='#'>Next</a></div>
+    		<div class='button' id='prev'><a href='#'>Prev</a></div>
+			<div class='button' id='start'> <a href='#'>Start Over</a></div>
+			
+    		<!-- <button class='' id='next'>Next</a></button>
+    		<button class='' id='prev'>Prev</a></button>
+    		<button class='' id='start'> Start Over</a></button> -->
+		</div>
+		<p>Notice:Time Limit: 5 Minutes</p>
+		<p id="timer"></p>
+		<script>
+		
+		</script>
+		<script type='text/javascript' src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js'></script>
+		<script type="text/javascript" src='questions.json'></script>
+		<script type='text/javascript' src='jsquiz.js'></script>
+		<script src='firebase.js'></script>
+		<script>
+		 window.setTimeout('checkIfContinue()', 299998);  //5 minutes
+			console.log("Setting timeout for windows");
+			function checkIfContinue()
+			{
+				console.log("In checkInfo");
+				alert("Timeout!....\nYour response is not submitted .....");
+				window.location='home.html';
+			}
+
+		
+
+		//timer
+
+				function startTimer(duration, display) {
+			var timer = duration, minutes, seconds;
+			setInterval(function () {
+				minutes = parseInt(timer / 60, 10)
+				seconds = parseInt(timer % 60, 10);
+
+				minutes = minutes < 10 ? "0" + minutes : minutes;
+				seconds = seconds < 10 ? "0" + seconds : seconds;
+
+				display.textContent = minutes + ":" + seconds;
+
+				if (--timer < 0) {
+					timer = duration;
+				}
+			}, 1000);
+		}
+
+		window.onload = function () {
+			var fiveMinutes = 60 * 5,
+				display = document.querySelector('#timer');
+			startTimer(fiveMinutes, display);
+		};
+		</script>
+
+	</body>
+</html>
